@@ -1,0 +1,118 @@
+#fcWrapper{
+    width: 500px;
+}
+
+#FinanceCalculator *{
+    font: 11px "Verdana", Helvetica, Arial, sans-serif;/*75%is12pxor1.2emof16px/linehight:1.6em(16px)*/
+    color: #333333;
+    line-height: 18px;
+}
+#FinanceCalculator {    
+    width: 100%;
+    background: #F8F8F8;
+    border: 1px solid #535353;
+}
+
+#FinanceTop {   
+    background-color: #535353;      
+}
+    #FinanceTop *{
+	font-size: 12px;
+    }
+    #FinanceTop label{
+	color: #ffffff;
+    }
+    #FinanceTop .pound{
+	color: #0096FF;
+	font-weight: bold;
+	font-size: 14px;
+    }
+    
+#FinanceMain label{
+    font-weight: bold;
+}
+.price_entry{
+    color: #0096FF !important;    
+    width: 70px;
+    padding: 5px;
+}
+.view_finance{
+    padding: 4px 8px;    
+}
+.repayment_value{
+    margin: 20px 0px 10px 0px;
+    font-weight: bold !important; 
+    font-size: 12px !important;
+}
+.fd_monthly{
+    padding: 2px 0px;
+    border-top: 1px double #666666; 
+    border-bottom: double #666666;
+    
+}
+#FinanceType, #FinanceDeposit{
+    width: 200px;
+    padding: 4px;    
+}
+#FinanceTop, #FinanceMain{
+    padding: 10px;
+}
+
+#FinanceCalculator select{
+    margin-bottom: 10px;
+}
+
+#fc_leftColumn{
+    float: left;
+    width: 48%;    
+}
+    #FinanceMain ul{/*Reset the default margin and padding of ul*/
+	margin: 0px;
+	padding: 0px;
+    }
+    #FinanceMain ul li{
+	list-style: none outside none;	
+    }
+
+#fc_rightColumn{
+    float: right;
+    width: 48%;    
+}
+
+/*css specific to widget - STARTS*/
+#FinanceCalculator .toggleBar{
+    padding: 5px;
+    background-color: #535353;
+    color: #FFFFFF;
+}
+#FinanceCalculator .MonthlyRepay, #FinanceCalculator .highlight{
+    color: #0096FF;
+    font-weight: bold;
+}
+
+#FinanceCalculator .toggle {
+    color: #0096FF !important;
+    border-bottom: 1px solid;
+    font-weight: bold;
+    cursor: pointer;
+}
+/*css specific to widget - ENDS*/
+
+.group:after {/*fix the problem when floating div right within the main container*/
+    content: ".";
+    display: block;
+    height: 0px;
+    clear: both;
+    visibility: hidden;
+}
+/*IE Fix*/
+html.group {
+    height: 1%;
+}
+:first-child + html .group {
+    min-height: 1px;
+}
+
+            
+
+           

@@ -1,0 +1,23 @@
+#message{
+    margin: 1em 0em;
+}
+.error_message {
+    background-color: #FFEBE8;
+    border: medium none #DD3C10;
+}
+.success_message {
+    background-color: #ECFFD5;
+    border: medium none #BAE09B;
+}
+.success_message p {
+    font-size: 1em;
+    padding-bottom: 0;
+}
+.messageBox {
+    border-style: solid;
+    border-width: 1px;
+    padding: 0.833em;
+}
+.alignRight{
+    text-align: right;
+}
