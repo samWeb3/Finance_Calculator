@@ -33,30 +33,19 @@
 	<!--Financial Calculator API, Script ENDS -->
 
         <script type="text/javascript">
-            $(document).ready(function(){
-                var financeOption = $('#FinanceType').val();
-		var orderTotal = $('.price_entry').val();
-		var financeDeposit =  $('#FinanceDeposit').val();
+            $(document).ready(function(){	
+		
 		var rateType = 'finance';
+		var resetOptions = $('#FinanceType').html(); //saves the original state of the <select> element
 		
-		try {
-		    var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType); 
-		} catch (e){
-		    if (e.name == 'fCException')
-		    {
-			return create({modal: true}, e.message);
-		    }
-		}
-		
-		//if dropdown menu selected
-		$('#FinanceType, #FinanceDeposit').change(function(){		    
-		    var financeOption = $('#FinanceType').val();
-		    var orderTotal = $('.price_entry').val();
-		    var financeDeposit =  $('#FinanceDeposit').val();
-		    var rateType = 'finance';
-		
+		//If calculate buttion clicked
+		$('.view_finance').click(function(){
+		    var financeOption = $('#FinanceType').val();	    
+		    var orderTotal = $('.price_entry').val();		    
+		    var financeDeposit =  $('#FinanceDeposit').val();		    
+		    		
 		    try {
-			var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType); 
+			var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
 		    } catch (e){
 			if (e.name == 'fCException')
 			{
@@ -65,22 +54,41 @@
 		    }
 		});
 		
-		//If calculate buttion clicked
-		$('.view_finance').click(function(){
-		    var financeOption = $('#FinanceType').val();
-		    var orderTotal = $('.price_entry').val();
-		    var financeDeposit =  $('#FinanceDeposit').val();
-		    var rateType = 'finance';
 		
+		//if dropdown menu selected
+		$('#FinanceType, #FinanceDeposit').change(function(){		    
+		    var financeOption = $('#FinanceType').val();		    
+		    var orderTotal = $('.price_entry').val();		    
+		    var financeDeposit =  $('#FinanceDeposit').val();		    		    
+		    		    
 		    try {
-			var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType); 
+			var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
 		    } catch (e){
 			if (e.name == 'fCException')
 			{
 			    return create({modal: true}, e.message);
 			}
 		    }
-		});	       
+		});
+		
+		/**
+		 * Note: Place this code at a button. 
+		 * If palced on the top calculate button may not respond when page refreshed with orderTotal value less than 300. 
+		 * Because of the exception terminating the code
+		 */
+		var financeOption = $('#FinanceType').val();		
+		var orderTotal = $('.price_entry').val();		
+		var financeDeposit =  $('#FinanceDeposit').val();
+		
+		try {
+		    var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
+		} catch (e){
+		    if (e.name == 'fCException')
+		    {
+			return create({modal: true}, e.message);
+		    }
+		}
+
             });
         </script>
     </head>
@@ -96,7 +104,7 @@
 		<div id="FinanceMain" class="group">
 		    <div id="fc_leftColumn">
 			<label>Select Finance Option:</label><br>
-			<select id="FinanceType">
+			<select id="FinanceType">			    
 			    <option value="ONIF6">6 Months Interest Free Credit</option>
 			    <option value="ONIB6-19.5">6 Months Classic Credit</option>
 			    <option value="ONIF12">12 Months Interest Free Credit</option>
@@ -144,6 +152,8 @@
 		</div>
 	    </div>
 	</div>  
+	
+	<div id="display" class="highlight"></div>
 
     </body>
 </html>

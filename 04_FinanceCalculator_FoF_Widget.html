@@ -53,9 +53,10 @@
 		var orderTotal = nowOnlyPriceSplit[1].replace(/,/g, '');//376.18		
 		var financeDeposit =  $('#FinanceDeposit').val();
 		var rateType = 'finance';
+		var resetOptions = $('#FinanceType').html(); //save the state of the <select> element
 		
 		try {
-		    var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType); 
+		    var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
 		} catch (e){
 		    if (e.name == 'fCException')
 		    {
@@ -65,16 +66,14 @@
 		
 		//if dropdown menu selected
 		$('#FinanceType, #FinanceDeposit').change(function(){		    
-		    var financeOption = $('#FinanceType').val();	
-		    
+		    var financeOption = $('#FinanceType').val();			    
 		    var nowOnlyPrice = $('.colors_productprice').text();//Now Only: £376.18 
 		    var nowOnlyPriceSplit = nowOnlyPrice.split("Now Only: £");//,376.18 
-		    var orderTotal = nowOnlyPriceSplit[1].replace(/,/g, '');//376.18
-		    
-		    var financeDeposit =  $('#FinanceDeposit').val();
-		    var rateType = 'finance';
+		    var orderTotal = nowOnlyPriceSplit[1].replace(/,/g, '');//376.18		    
+		    var financeDeposit =  $('#FinanceDeposit').val();		    		
 		
 		    try {
+			//No need to pass resetOption to a consturctor when calculating from the <select> dropdown box itself.
 			var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType); 
 		    } catch (e){
 			if (e.name == 'fCException')
@@ -145,6 +144,6 @@
 	    </div>
 	</div>  
 	<br>
-	<b><font class="pricecolor colors_productprice">Now Only: £276.18 </font></b>
+	<b><font class="pricecolor colors_productprice">Now Only: £76.18 </font></b>
     </body>
 </html>

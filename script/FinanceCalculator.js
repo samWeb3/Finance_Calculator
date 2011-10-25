@@ -4,9 +4,10 @@
  * @param string financeOption	    Fiance Option Selected from Select DropDown menu
  * @param int	 orderTotal	    Total Value of money Spent by Customer
  * @param int	 financeDeposit	    Finance Deposit selected from Discount DropDown menu
- * @param string	rateType		    'ideal' or 'finance' 
+ * @param string rateType	    'ideal' or 'finance' 
+ * @param string resetOptions	    Reset the state of the Select element
  */
-function FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType){
+function FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions){
    
     //Furniture on Finance [Placed on page] Rates Band
     this.finance_rateA = ['ONIF6', 'ONIF12', 'ONIB24-19.5', 'ONIB36-19.5'];
@@ -23,6 +24,7 @@ function FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType){
     this.financeDeposit = financeDeposit;
     this.fDepositAmount = orderTotal *(financeDeposit/100);
     this.rateType = rateType;
+    this.resetOptions = resetOptions;
     
     //Once object is initialized called init() method to determing bands of rates and generateTable for financial calculator
     this.init();
@@ -53,18 +55,19 @@ FinanceCalculator.prototype.init = function(){
  * Filters bands of rates[rateBands]  based on the orderTotal for Ideal Home Store
  */
 FinanceCalculator.prototype.ratesDisplayIdeal = function(){   
+    var rateBands;
     if (this.orderTotal < 500){	
 	$('#FinanceMain').hide("slow");
-	throw new FinanceCalculatorException("Order Total less than \u00A3500 !");
+	throw new FinanceCalculatorException("Order Total less than \u00A3500 !");	
     } else if (this.orderTotal >= 500 && this.orderTotal < 1000) {
 	$('#FinanceMain').show("slow");
-	var rateBands = this.ideal_rateA;	
+	rateBands = this.ideal_rateA;	
     } else if (this.orderTotal >= 1000 && this.orderTotal < 2000){
 	$('#FinanceMain').show("slow");
-	var rateBands = this.ideal_rateB;	
+	rateBands = this.ideal_rateB;		
     } else if (this.orderTotal >= 2000){
 	$('#FinanceMain').show("slow");
-	var rateBands = this.ideal_rateC;	
+	rateBands = this.ideal_rateC;		
     }
     
     this.displayBands(rateBands);
@@ -75,28 +78,29 @@ FinanceCalculator.prototype.ratesDisplayIdeal = function(){
  */
 FinanceCalculator.prototype.ratesDisplayFinance = function(){        
     var toggleBar = document.getElementById('WidgetBar');
-    
-    if (this.orderTotal < 300){			
-	$('.toggleBar').html('PLACE ORDER ABOVE <span class="highlight">\u00A3300</span> TO VIEW FINANCE OPTION!');	
+    var rateBands;
+    if (this.orderTotal < 300){
 	if (!toggleBar){
 	    $('#FinanceMain').hide("slow");
 	    throw new FinanceCalculatorException("Order Total less than \u00A3300 !");
-	} 
+	} else {
+	    $('.toggleBar').html('PLACE ORDER ABOVE <span class="highlight">\u00A3300</span> TO VIEW FINANCE OPTION!');	
+	}
     } else if (this.orderTotal >= 300 && this.orderTotal < 1000) {
 	if (!toggleBar){
 	    $('#FinanceMain').show("slow");    
 	}	
-	var rateBands = this.finance_rateA;		
+	rateBands = this.finance_rateA;	
     } else if (this.orderTotal >= 1000 && this.orderTotal < 2000){
 	if (!toggleBar){
 	    $('#FinanceMain').show("slow");    
-	}
-	var rateBands = this.finance_rateB;		
+	} 
+	rateBands = this.finance_rateB;			
     } else if (this.orderTotal >= 2000){
 	if (!toggleBar){
 	    $('#FinanceMain').show("slow");    
-	}
-	var rateBands = this.finance_rateC;	
+	} 
+	rateBands = this.finance_rateC;		
     }
     //pass bands of array
     this.displayBands(rateBands);   
@@ -108,6 +112,9 @@ FinanceCalculator.prototype.ratesDisplayFinance = function(){
  *  @param array rateBands	    rateBands of array filtered from IF statements in  ratesDisplayFinance()
  */
 FinanceCalculator.prototype.displayBands = function(rateBands){
+    //Reset the state of <SELECT> element back to original one
+    $('#FinanceType').html(this.resetOptions);    
+    console.log(this.resetOptions);
     /**      
      * Add the bands rate into the value attribute of option in select element
      * Then add the class="makeSafe"
@@ -115,15 +122,18 @@ FinanceCalculator.prototype.displayBands = function(rateBands){
     for (var i in rateBands){	
 	$("#FinanceType option[value="+rateBands[i]+"]").addClass('makeSafe');
     }
+    
     //Remove all option that doesn't have makeSafe class attribute
     $("#FinanceType option:not(.makeSafe)").remove();
+    
 }
 
 /**
 * Use FinanceDetails class API 
 * Pass the value to the financial calculator
 */
-FinanceCalculator.prototype.generateTable = function(){    
+FinanceCalculator.prototype.generateTable = function(){   
+    //alert("Inside generate Table (Finance Option): " + this.financeOption);
     var financialDetails = new FinanceDetails(this.financeOption, parseFloat(this.orderTotal), parseInt(this.financeDeposit), parseFloat(this.fDepositAmount));   
     $('.fd_price').text("\u00A3" + financialDetails.goods_val);
     $('.fd_deposit_percent').text(financialDetails.d_pc + '%');
@@ -137,8 +147,6 @@ FinanceCalculator.prototype.generateTable = function(){
     $('.fd_monthly').text("\u00A3" + financialDetails.m_inst);
     $('.MonthlyRepay').text("\u00A3" + financialDetails.m_inst);
 }
-
-
 
 /*
  * Boxy LightBox Message
