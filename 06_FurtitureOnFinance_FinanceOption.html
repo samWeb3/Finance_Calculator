@@ -1982,7 +1982,11 @@ v_ga_track("UA-2409708-23");
 	    }
         </style>
 	
-	<!--script src="script/jquery-1.3.2.min.js"></script-->	
+	<!--
+	    Removing following (jquery-1.3.2.min.js) cause select dropdown menu to display only 2 option 
+	    although there is link to jquery/1.4.2/jquery.min.js above
+	-->
+	<script src="script/jquery-1.3.2.min.js"></script>	
 	
 	<!--boxy assets STARTS-->			    		    			    
 	<link rel="stylesheet" type="text/css" href="boxy/stylesheets/boxy.css" media="screen" />
@@ -2015,14 +2019,13 @@ v_ga_track("UA-2409708-23");
 			/*
 			 ** $(this).parents('td.v65-productDetailInfo'): select parent element of ('.color_productPrice) and assign it to var
 			 */			
-			var parentElement = $(this).parents('td.v65-productDetailInfo');
-			
+			var parentElement = $(this).parents('td.v65-productDetailInfo');			
 			
 			/**
 			 * 1. selects the parent element 'td.v65-productDetailInfo' of each '.colors_productprice' element
 			 * 2. append table
 			 */			
-			parentElement.append('<table border="0" width="100%"><tr><td colspan="2"><div id="FinanceCalculator" class="marginTB10px shadow"><div id="WidgetBar"><div class="toggleBar cursor">FINANCE OPTION FROM: <span class="MonthlyRepay">£0</span> <!--strong class="toggle">Click Here</strong--></div></div><div id="FinanceMain" class="group"><div id="fc_leftColumn"><label>Finance Option:</label><br><select id="FinanceType"><option value="ONIF6">6 Months Interest Free Credit</option><option value="ONIB6-19.5">6 Months Classic Credit</option><option value="ONIF12">12 Months Interest Free Credit</option><option value="ONIB12-19.5">12 Months Classic Credit</option><option value="ONIF24">24 Months Interest Free Credit</option><option value="ONIB24-19.5">24 Months Classic Credit</option><option value="ONIF36">36 Months Interest Free Credit</option><option value="ONIB36-19.5" SELECTED>36 Months Classic Credit</option></select><ul><li>Price</li><li>Deposit(&#37;)</li><li>Deposit(&#163;)</li><li>Loan Amount</li><li>Term Agreement</li><li>APR</li><li>Loan Repayment</li><li>Cost of Load</li><li>Total Amount</li><li class="repayment_value">Monthly Installment</li></ul></div><div id="fc_rightColumn"><label>Select Deposit:</label><br><select id="FinanceDeposit"><option value="10" class="deposit10">10%</option><option value="20" class="deposit20">20%</option><option value="30" class="deposit30">30%</option><option value="40" class="deposit40">40%</option><option value="50" class="deposit50">50%</option></select><ul><li class="fd_price"></li><li class="fd_deposit_percent"></li><li class="fd_deposit"></li><li class="fd_loanamount"></li><li class="fd_terms"></li><li class="fd_apr"></li><li class="fd_loanrepay"></li><li class="fd_loancost"></li><li class="fd_totalrepay"></li><li class="fd_monthly repayment_value"></li></ul></div></div></div></td></tr></table>');
+			parentElement.append('<table border="0" width="100%"><tr><td colspan="2"><div id="FinanceCalculator" class="marginTB10px shadow"><div id="WidgetBar"><div class="toggleBar cursor">FINANCE OPTION FROM: <span class="MonthlyRepay">£0</span> <!--strong class="toggle">Click Here</strong--></div></div><div id="FinanceMain" class="group"><div id="fc_leftColumn"><label>Finance<br /> Option:</label><br><select id="FinanceType"><option value="ONIF6">6 Months Interest Free Credit</option><option value="ONIB6-19.5">6 Months Classic Credit</option><option value="ONIF12">12 Months Interest Free Credit</option><option value="ONIB12-19.5">12 Months Classic Credit</option><option value="ONIF24">24 Months Interest Free Credit</option><option value="ONIB24-19.5">24 Months Classic Credit</option><option value="ONIF36">36 Months Interest Free Credit</option><option value="ONIB36-19.5" SELECTED>36 Months Classic Credit</option></select><ul><li>Price</li><li>Deposit(&#37;)</li><li>Deposit(&#163;)</li><li>Loan Amount</li><li>Term Agreement</li><li>APR</li><li>Loan Repayment</li><li>Cost of Load</li><li>Total Amount</li><li class="repayment_value">Monthly Installment</li></ul></div><div id="fc_rightColumn"><label>Select<br /> Deposit:</label><br><select id="FinanceDeposit"><option value="10" class="deposit10">10%</option><option value="20" class="deposit20">20%</option><option value="30" class="deposit30">30%</option><option value="40" class="deposit40">40%</option><option value="50" class="deposit50">50%</option></select><ul><li class="fd_price"></li><li class="fd_deposit_percent"></li><li class="fd_deposit"></li><li class="fd_loanamount"></li><li class="fd_terms"></li><li class="fd_apr"></li><li class="fd_loanrepay"></li><li class="fd_loancost"></li><li class="fd_totalrepay"></li><li class="fd_monthly repayment_value"></li></ul></div></div></div></td></tr></table>');
 			
 			/* Once Table has been appended
 			 * find('#FinanceMain').hide()			finds #FinanceMain() div and hides it

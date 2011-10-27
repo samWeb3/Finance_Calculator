@@ -44,16 +44,17 @@
 		    var orderTotal = $('.price_entry').val();		    
 		    var financeDeposit =  $('#FinanceDeposit').val();		    
 		    		
-		    try {
-			var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
+		    try {			
+			new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
+			//trigger button twice to overcome small bug For e.g. enter 3000 and cal without following line
+			document.getElementById('triggerButton').click();			
 		    } catch (e){
 			if (e.name == 'fCException')
 			{
 			    return create({modal: true}, e.message);
 			}
 		    }
-		});
-		
+		});		
 		
 		//if dropdown menu selected
 		$('#FinanceType, #FinanceDeposit').change(function(){		    
@@ -62,7 +63,7 @@
 		    var financeDeposit =  $('#FinanceDeposit').val();		    		    
 		    		    
 		    try {
-			var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
+			new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
 		    } catch (e){
 			if (e.name == 'fCException')
 			{
@@ -81,14 +82,13 @@
 		var financeDeposit =  $('#FinanceDeposit').val();
 		
 		try {
-		    var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
+		    new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
 		} catch (e){
 		    if (e.name == 'fCException')
 		    {
 			return create({modal: true}, e.message);
 		    }
 		}
-
             });
         </script>
     </head>
@@ -98,7 +98,7 @@
 		<div id="FinanceTop">
 		    <label>How much would you like to spend? <span class="pound">&pound;</span></label>
 		    <input type="text" class="price_entry" value="300.00" />&nbsp;
-		    <input type="submit" value="Calculate" class="view_finance" />
+		    <input type="submit" value="Calculate" class="view_finance" id="triggerButton" />
 		</div>
 
 		<div id="FinanceMain" class="group">

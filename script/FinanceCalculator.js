@@ -24,9 +24,7 @@ function FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, 
     this.financeDeposit = financeDeposit;
     this.fDepositAmount = orderTotal *(financeDeposit/100);
     this.rateType = rateType;
-    this.resetOptions = resetOptions;
-    
-    //console.log("Finance Option " + this.financeOption + " Order Total: " + this.orderTotal + " finance Deposit: " + this.financeDeposit + " fDepositAmount " + this.fDepositAmount);
+    this.resetOptions = resetOptions;    
     
     //Once object is initialized called init() method to determing bands of rates and generateTable for financial calculator
     this.init();
@@ -44,16 +42,15 @@ FinanceCalculator.prototype.init = function(){
 	    this.generateTable();
 	    break;
 	case 'finance':	  	 
-	   this.ratesDisplayFinance();
-	   this.generateTable();
-	   break;
-	   case 'productDetails':
 	    this.ratesDisplayFinance();
-	    //this.generateTableFinanceOption();
+	    this.generateTable();
+	    break;
+	case 'productDetails':
+	    this.ratesDisplayFinance();	    
 	    break;	 
-	 default:
-	 throw new FinanceCalculatorException("Invalid Rate Type: [ENTER: ideal OR finance]!");
-	 break;	       
+	default:
+	    throw new FinanceCalculatorException("Invalid Rate Type: [ENTER: ideal OR finance]!");
+	    break;	       
     }
 }
 

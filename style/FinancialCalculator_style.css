@@ -29,7 +29,7 @@
     }
     
 #FinanceMain label{
-    font-weight: bold;
+    font-weight: bold;    
 }
 .price_entry{
     color: #0096FF !important;    
@@ -48,7 +48,7 @@
     padding: 2px 0px;
     border-top: 1px double #666666; 
     border-bottom: double #666666;
-    
+    margin-top: 17px;
 }
 #FinanceType, #FinanceDeposit{
     width: 100%;

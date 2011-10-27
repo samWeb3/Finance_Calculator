@@ -49,7 +49,7 @@ function displayErrorMessage(){
 }
 
 /**
- * Triggers the form with the function is invoked
+ * Triggers the form when the function is invoked
  * http://api.jquery.com/trigger/
  */
 function triggerForm(){    
