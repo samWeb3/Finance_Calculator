@@ -51,7 +51,7 @@
     
 }
 #FinanceType, #FinanceDeposit{
-    width: 100%;
+    width: 200px;
     padding: 4px;    
 }
 #FinanceTop, #FinanceMain{
@@ -72,8 +72,6 @@
     }
     #FinanceMain ul li{
 	list-style: none outside none;	
-	white-space: nowrap;
-	overflow: hidden;
     }
 
 #fc_rightColumn{
@@ -99,18 +97,6 @@
     cursor: pointer;
 }
 /*css specific to widget - ENDS*/
-
-.marginTB10px {
-    margin: 10px 0px;
-}
-
-.cursor{
-    cursor: pointer;
-}
-
-.shadow {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-}
 
 .group:after {/*fix the problem when floating div right within the main container*/
     content: ".";

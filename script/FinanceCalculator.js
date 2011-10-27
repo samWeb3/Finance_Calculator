@@ -26,6 +26,8 @@ function FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, 
     this.rateType = rateType;
     this.resetOptions = resetOptions;
     
+    //console.log("Finance Option " + this.financeOption + " Order Total: " + this.orderTotal + " finance Deposit: " + this.financeDeposit + " fDepositAmount " + this.fDepositAmount);
+    
     //Once object is initialized called init() method to determing bands of rates and generateTable for financial calculator
     this.init();
 }
@@ -45,8 +47,12 @@ FinanceCalculator.prototype.init = function(){
 	   this.ratesDisplayFinance();
 	   this.generateTable();
 	   break;
+	   case 'productDetails':
+	    this.ratesDisplayFinance();
+	    //this.generateTableFinanceOption();
+	    break;	 
 	 default:
-	 alert ("Invalid Rate Type: [ENTER: ideal OR finance]!");
+	 throw new FinanceCalculatorException("Invalid Rate Type: [ENTER: ideal OR finance]!");
 	 break;	       
     }
 }
@@ -114,7 +120,7 @@ FinanceCalculator.prototype.ratesDisplayFinance = function(){
 FinanceCalculator.prototype.displayBands = function(rateBands){
     //Reset the state of <SELECT> element back to original one
     $('#FinanceType').html(this.resetOptions);    
-    console.log(this.resetOptions);
+    //console.log(this.resetOptions);
     /**      
      * Add the bands rate into the value attribute of option in select element
      * Then add the class="makeSafe"
@@ -146,6 +152,15 @@ FinanceCalculator.prototype.generateTable = function(){
     $('.fd_totalrepay').text("\u00A3" + financialDetails.total);
     $('.fd_monthly').text("\u00A3" + financialDetails.m_inst);
     $('.MonthlyRepay').text("\u00A3" + financialDetails.m_inst);
+}
+
+/**
+* Use FinanceDetails class API 
+* Pass the value to the financial calculator
+*/
+FinanceCalculator.prototype.returnFinanceOption = function(){       
+    var financialDetails = new FinanceDetails(this.financeOption, parseFloat(this.orderTotal), parseInt(this.financeDeposit), parseFloat(this.fDepositAmount));       
+    return financialDetails;
 }
 
 /*
