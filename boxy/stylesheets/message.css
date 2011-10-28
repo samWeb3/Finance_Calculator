@@ -1,9 +1,15 @@
 #message{
     margin: 1em 0em;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.30);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.30);
 }
 .error_message {
+    color: #666666;
+    font-weight: bold;
+    text-transform: uppercase;
     background-color: #FFEBE8;
-    border: medium none #DD3C10;
+    border: medium none #DD3C10;    
 }
 .success_message {
     background-color: #ECFFD5;

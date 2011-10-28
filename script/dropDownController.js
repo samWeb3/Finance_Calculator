@@ -1,6 +1,10 @@
 
 $(document).ready(function()
-{    
+{   
+    var message = document.getElementById('#message');
+    if (!message){	
+	$('#v65-onepage-ShippingCost').append('<tr><td colspan="2"><div id="message"></div></td></tr>'); 
+    }
     $('#v65-checkout-payment-header').hide();
     
     var price = $('.pricecolor').text();
@@ -14,7 +18,9 @@ $(document).ready(function()
     else
     {	
 	displayFinanceOption();	
-	$('#PaymentMethodTypeDisplay [value="Check by Mail"]').attr('onClick','return create({modal: true})');	
+	//$('#PaymentMethodTypeDisplay [value="Check by Mail"]').attr('onClick','return create({modal: true})');//IE doesn't support onClick event on option	
+	//use onChange instead 
+	$('#PaymentMethodTypeDisplay').attr('onChange','if (this.value == "Check by Mail") return create({modal: true})');//Works in IE9, IE8	
     }
     
     $('#PaymentMethodTypeDisplay').change(function()
@@ -49,11 +55,11 @@ function displayErrorMessage(){
 }
 
 /**
- * Triggers the form when the function is invoked
+ * Triggers the form with the function is invoked
  * http://api.jquery.com/trigger/
  */
 function triggerForm(){    
-    $("form:first").trigger("submit");
+    $("#v65-onepage-CheckoutForm").trigger("submit");
 }
 
 /*

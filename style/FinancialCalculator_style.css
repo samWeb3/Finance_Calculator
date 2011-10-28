@@ -110,6 +110,8 @@
 
 .shadow {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    -mox-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);    
 }
 
 .group:after {/*fix the problem when floating div right within the main container*/
