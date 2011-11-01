@@ -1,0 +1,235 @@
+<html>
+    <head>
+        <title>Test Page for multiplyAndAddFive(value1, value2)</title>
+        <script language="javascript" src="../app/jsUnitCore.js"></script>
+        <script language="javascript" src="../script/jquery.js"></script>
+        <script type="text/javascript" src="https://secure.pay4later.com/js_api/FinanceDetails.js.php?api_key=4ab5a98226e33c32d9daf8722f2ab764"></script>
+        <script language="javascript" src="../script/FinanceCalculator.js"></script>
+        <script language="javascript" src="../script/FinanceCalculatorException.js"></script>
+    </head>
+    <body>
+        <script language="javascript">
+            // Finance Options
+            // 'ONIF6', 'ONIF12', 'ONIB12-19.5', 'ONIF24', 'ONIB24-19.5', 'ONIB36-19.5', 'ONIF36', 'ONIB36-19.5'
+            
+            /**
+             * Quick and easy array compare function thanks to Stackoverflow
+             * and user David.
+             * Extended to allow for nested arrays
+             * http://stackoverflow.com/questions/1773069/using-jquery-to-compare-two-arrays
+             */
+            jQuery.fn.compare = function(t) {
+                if (this.length != t.length) { return false; }
+                
+                var a = this.sort(),
+                b = t.sort();
+                for (var i = 0; t[i]; i++) {
+                    if (a[i] instanceof Array) {
+                        if(!$(a[i]).compare(b[i])) {
+                            return false;
+                        }
+                    } else if (a[i] !== b[i]) { 
+                        return false;
+                    }
+                }
+                return true;
+            };
+            
+            /**
+             * Tests the compare function is functioning correctly
+             */
+            function testCompareFunction() {
+                // Basic check for simple array
+                var test1a = [1,2,3];
+                var test1b = [1,2,3];
+                assertTrue('Arrays should match', $(test1a).compare(test1b));
+                
+                //  Match when contents not in same order.
+                var test2a = [1,2,3];
+                var test2b = [3,2,1];
+                assertTrue('Arrays should match', $(test2a).compare(test2b));
+                
+                // Basic check for simple array that should fail.
+                var test3a = [1,2,3];
+                var test3b = ['a','b','c'];
+                assertFalse('Arrays should not match', $(test3a).compare(test3b));
+                
+                // String checks
+                var test4a = ['dog', 'cat', 'mouse'];
+                var test4b = ['wolf', 'tiger', 'rat'];
+                assertFalse('Arrays should not match', $(test4a).compare(test4b));
+                
+                // Move onto more usable checks of arrays similar to those 
+                // used during the finance calculator runtime.
+                var test5a = ['option1', 'option2', ['a','b','c','d','e']];
+                var test5b = ['option1', 'option2', ['a','b','c','d','e']];
+                assertTrue('Arrays with nested array, should match.', $(test5a).compare(test5b));
+                
+                // Check to make sure it checks for failures.
+                var test6a = ['option1', 'option2', ['a','b','c','d','e']];
+                var test6b = ['option1', 'option2', [1,2,3]];
+                assertFalse('Arrays with nested array, should fail to match.', $(test6a).compare(test6b));
+            }
+            
+            /**
+             * Run through the test data provided by the dataProvider method.
+             */
+            function testFinanceCalculator() {
+                var data = _dataProvider();
+                for(i=0;i<data.length;i++) {
+                    dataRow = data[i];
+					console.log((i + 1) + ". Data length: " + data[i]);
+                    try {
+                        // financeOption, orderTotal, financeDeposit, rateType, resetOptions
+                        new FinanceCalculator(dataRow[0], dataRow[1], dataRow[2], dataRow[3], dataRow[4]);
+                        assertEquals(dataRow[5], dataRow[6], _confirmSelectOptions(dataRow[7]));
+                        assertEquals(dataRow[8], dataRow[9], _confirmFinanceDisplay(dataRow[10]));
+                    } catch (e){
+                        console.log(e);
+                        if (e.name == 'fCException')
+                        {
+                            fail('Failed to create FinanceCalculator object with given message: ' + e.message);
+                            return false;
+                        } else {
+                            fail(e.jsUnitMessage);
+                        }
+                    }
+                }
+            }
+            
+            /**
+             * Data provide method providing test data and expections.
+             * @return array Array containing test data.
+             */
+            function _dataProvider() {
+                // Row: financeOption, orderTotal, financeDeposit, rateType, resetOptions, failMessage, assertResult, assertSelect, aassertResult, assertValues
+                var tests = [
+				['ONIF6', '500', '10', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£500.00', '10.00%', '£50.00', '£450.00', '6 months', '£450.00', '£75.00', '£75.00']],
+				['ONIF6', '600', '10', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£600.00', '10.00%', '£60.00', '£540.00', '6 months', '£540.00', '£90.00', '£90.00']],
+				['ONIF6', '1500', '10', 'ideal', $('#ResetFinanceType').html(),
+						'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '10.00%', '£150.00', '£1350.00', '6 months', '£1350.00', '£225.00', '£225.00']],
+				['ONIF6', '3400', '10', 'ideal', $('#ResetFinanceType').html(),
+						'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£3400.00', '10.00%', '£340.00', '£3060.00', '6 months', '£3060.00', '£510.00', '£510.00']],
+				['ONIF6', '900', '10', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£900.00', '10.00%', '£90.00', '£810.00', '6 months', '£810.00', '£135.00', '£135.00']],
+				['ONIF6', '900', '10', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', false, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£900.00', '10.00%', '£90.00', '£810.00', '6 months', '£810.00', '£135.00', '£135.00']],
+				['ONIF12', '1000', '10', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1000.00', '10.00%', '£100.00', '£900.00', '12 months', '£900.00', '£75.00', '£75.00']],
+				['ONIF12', '3500', '10', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£3500.00', '10.00%', '£350.00', '£3150.00', '12 months', '£3150.00', '£262.50', '£262.50']],
+				['ONIF12', '700', '10', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£700.00', '10.00%', '£70.00', '£630.00', '12 months', '£630.00', '£52.50', '£52.50']],
+				['ONIB24-19.5', '600', '20', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£600.00', '20.00%', '£120.00', '£480.00', '24 months', '£574.78', '£23.95', '£23.95']],
+				['ONIB24-19.5', '1500', '20', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '20.00%', '£300.00', '£1200.00', '24 months', '£1436.94', '£59.87', '£59.87']],
+				['ONIF24', '3100', '20', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£3100.00', '20.00%', '£620.00', '£2480.00', '24 months', '£2480.00', '£103.33', '£103.33']],
+				['ONIB36-19.5', '5000', '20', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£5000.00', '20.00%', '£1000.00', '£4000.00', '36 months', '£5202.01', '£144.50', '£144.50']],
+				['ONIB36-19.5', '999.99', '20', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£999.99', '20.00%', '£200.00', '£799.99', '36 months', '£1040.39', '£28.90', '£28.90']],										
+                ['ONIB36-19.5', '1500', '20', 'ideal', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '20.00%', '£300.00', '£1200.00', '36 months', '£1560.60', '£43.35', '£43.35']],																
+				['ONIF6', '500', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£500.00', '10.00%', '£50.00', '£450.00', '6 months', '£450.00', '£75.00', '£75.00']],
+				['ONIF6', '1500', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', false, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '10.00%', '£150.00', '£1350.00', '6 months', '£1350.00', '£225.00', '£225.00']],
+				['ONIF6', '3500', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', false, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£3500.00', '10.00%', '£350.00', '£3150.00', '6 months', '£3150.00', '£525.00', '£525.00']],
+				['ONIF12', '3500', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', true, ['£3500.00', '10.00%', '£350.00', '£3150.00', '12 months', '£3150.00', '£262.50', '£262.50']],
+				['ONIF12', '1500', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '10.00%', '£150.00', '£1350.00', '12 months', '£1350.00', '£112.50', '£112.50']],
+				['ONIF12', '3500', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', true, ['£3500.00', '10.00%', '£350.00', '£3150.00', '12 months', '£3150.00', '£262.50', '£262.50']],
+				['ONIF24', '3500', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', true, ['£3500.00', '10.00%', '£350.00', '£3150.00', '24 months', '£3150.00', '£131.25', '£131.25']],
+				['ONIF24', '1500', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '10.00%', '£150.00', '£1350.00', '24 months', '£1350.00', '£56.25', '£56.25']],
+				['ONIB24-19.5', '500', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', false, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', true, ['£500.00', '10.00%', '£50.00', '£450.00', '24 months', '£538.85', '£22.45', '£22.45']],														
+				];
+                return tests;
+            }   
+            
+            /**
+             * Confirms the select objects currently loaded into the 
+             * Finance Type div match those options that should be asserted.
+             * @param array Assertions array of expected select values.
+             */
+            function _confirmSelectOptions(assertions) {
+                var loadedOptions = [];
+                $('#FinanceType option').each(function()
+                {
+                    loadedOptions.push($(this).val());
+                });
+                
+                return $(loadedOptions).compare(assertions);
+            }
+
+            /**
+             * Confirms the finance display values current loaded into the
+             * fd_* divs and checks the match of the assertions that are
+             * expected to the be loaded.
+             * @param array Asserts array of expected select values.
+             */
+            function _confirmFinanceDisplay(assertions) {
+                var classList = [
+                    'fd_price',
+                    'fd_deposit_percent',
+                    'fd_deposit',
+                    'fd_loanamount',
+                    'fd_terms',
+                    'fd_loanrepay',
+                    'fd_monthly',
+                    'MonthlyRepay'
+                ];
+                
+                var valuesList = [];
+                for(k in classList) {
+                    valuesList.push($('.' + classList[k]).text());
+                }
+                
+                return $(valuesList).compare(assertions);
+            }
+        </script>
+
+        <select id="ResetFinanceType">			    
+            <option value="ONIF6">6 Months Interest Free Credit</option>
+            <option value="ONIB6-19.5">6 Months Classic Credit</option>
+            <option value="ONIF12">12 Months Interest Free Credit</option>
+            <option value="ONIB12-19.5">12 Months Classic Credit</option>
+            <option value="ONIF24">24 Months Interest Free Credit</option>
+            <option value="ONIB24-19.5">24 Months Classic Credit</option>
+            <option value="ONIF36">36 Months Interest Free Credit</option>
+            <option value="ONIB36-19.5" SELECTED>36 Months Classic Credit</option>
+        </select>
+        
+        <select id="FinanceType">			    
+            <option value="ONIF6">6 Months Interest Free Credit</option>
+            <option value="ONIB6-19.5">6 Months Classic Credit</option>
+            <option value="ONIF12">12 Months Interest Free Credit</option>
+            <option value="ONIB12-19.5">12 Months Classic Credit</option>
+            <option value="ONIF24">24 Months Interest Free Credit</option>
+            <option value="ONIB24-19.5">24 Months Classic Credit</option>
+            <option value="ONIF36">36 Months Interest Free Credit</option>
+            <option value="ONIB36-19.5" SELECTED>36 Months Classic Credit</option>
+        </select>
+
+        <div id="FinanceMain"></div>
+
+        <div class="fd_price"></div>
+        <div class="fd_deposit_percent"></div>
+        <div class="fd_deposit"></div>
+        <div class="fd_loanamount"></div>
+        <div class="fd_terms"></div>
+        <div class="fd_apr"></div>
+        <div class="fd_loanrepay"></div>
+        <div class="fd_monthly"></div>
+        <div class="MonthlyRepay"></div>
+    </body>
+</html>
