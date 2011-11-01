@@ -29,32 +29,30 @@
 		var rateType = 'ideal';
 		var resetOptions = $('#FinanceType').html(); //saves the original state of the <select> element
 		
-		//If calculate buttion clicked
+		//If calculate button clicked
 		$('.view_finance').click(function(){
 		    var financeOption = $('#FinanceType').val();	    
 		    var orderTotal = $('.price_entry').val();		    
 		    var financeDeposit =  $('#FinanceDeposit').val();		    
 		    		
 		    try {
-			var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
+			new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
 		    } catch (e){
 			if (e.name == 'fCException')
 			{
 			    return create({modal: true}, e.message);
 			}
 		    }
-		});
-		
+		});		
 		
 		//if dropdown menu selected
 		$('#FinanceType, #FinanceDeposit').change(function(){		    
 		    var financeOption = $('#FinanceType').val();		    
 		    var orderTotal = $('.price_entry').val();		    
-		    var financeDeposit =  $('#FinanceDeposit').val();		    		    
-		    
+		    var financeDeposit =  $('#FinanceDeposit').val();
 		    
 		    try {
-			var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
+			new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
 		    } catch (e){
 			if (e.name == 'fCException')
 			{
@@ -64,8 +62,8 @@
 		});
 		
 		/**
-		 * Note: Place this code at a button. 
-		 * If palced on the top calculate button may not respond when page refreshed with orderTotal value less than 300. 
+		 * Note: Place this code at the bottom. 
+		 * If palced on the top, calculate button may not respond when page refreshed with orderTotal value less than 300. 
 		 * Because of the exception terminating the code
 		 */
 		var financeOption = $('#FinanceType').val();		
@@ -73,7 +71,7 @@
 		var financeDeposit =  $('#FinanceDeposit').val();
 		
 		try {
-		    var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
+		    new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
 		} catch (e){
 		    if (e.name == 'fCException')
 		    {

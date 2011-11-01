@@ -37,26 +37,28 @@
 	<script src="script/FinanceCalculator.js" type="text/javascript"></script>
 	<!--Financial Calculator API, Script ENDS -->
 
-        <script type="text/javascript">	    
-	    
-            $(document).ready(function(){
-		
+        <script type="text/javascript">	 
+            $(document).ready(function(){		
 		$('#FinanceMain').hide();
 		
 		$('.toggle').click(function(){
 		    $('#FinanceMain').toggle("slow");
 		});		
-		
-		var financeOption = $('#FinanceType').val();
+				
 		var nowOnlyPrice = $('.colors_productprice').text();//Now Only: £376.18 
 		var nowOnlyPriceSplit = nowOnlyPrice.split("Now Only: £");//,376.18 
-		var orderTotal = nowOnlyPriceSplit[1].replace(/,/g, '');//376.18		
-		var financeDeposit =  $('#FinanceDeposit').val();
+		var orderTotal = nowOnlyPriceSplit[1].replace(/,/g, '');//376.18	
 		var rateType = 'finance';
+		if (orderTotal >= 2000 && rateType == 'finance'){
+		    var financeOption = $('#FinanceType [value="ONIF36"]').val();		    
+		} else {
+		    var financeOption = $('#FinanceType').val();		    
+		}		
+		var financeDeposit =  $('#FinanceDeposit').val();		
 		var resetOptions = $('#FinanceType').html(); //save the state of the <select> element
 		
 		try {
-		    var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 
+		    new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 		    
 		} catch (e){
 		    if (e.name == 'fCException')
 		    {
@@ -67,14 +69,14 @@
 		//if dropdown menu selected
 		$('#FinanceType, #FinanceDeposit').change(function(){		    
 		    var financeOption = $('#FinanceType').val();			    
-		    var nowOnlyPrice = $('.colors_productprice').text();//Now Only: £376.18 
-		    var nowOnlyPriceSplit = nowOnlyPrice.split("Now Only: £");//,376.18 
-		    var orderTotal = nowOnlyPriceSplit[1].replace(/,/g, '');//376.18		    
+		    var nowOnlyPrice = $('.colors_productprice').text();
+		    var nowOnlyPriceSplit = nowOnlyPrice.split("Now Only: £");
+		    var orderTotal = nowOnlyPriceSplit[1].replace(/,/g, '');
 		    var financeDeposit =  $('#FinanceDeposit').val();		    		
 		
 		    try {
-			//No need to pass resetOption to a consturctor when calculating from the <select> dropdown box itself.
-			var financeCalculator = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType); 
+			//No need to pass resetOption to a constructor when calculating from the <select> dropdown box itself.
+			new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType); 
 		    } catch (e){
 			if (e.name == 'fCException')
 			{
@@ -144,6 +146,6 @@
 	    </div>
 	</div>  
 	<br>
-	<b><font class="pricecolor colors_productprice">Now Only: £348.58 </font></b>
+	<b><font class="pricecolor colors_productprice">Now Only: £4448.58</font></b>
     </body>
 </html>

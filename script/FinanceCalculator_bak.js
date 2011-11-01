@@ -114,7 +114,8 @@ FinanceCalculator.prototype.ratesDisplayFinance = function(){
  */
 FinanceCalculator.prototype.displayBands = function(rateBands){
     //Reset the state of <SELECT> element back to original one
-    $('#FinanceType').html(this.resetOptions);        
+    $('#FinanceType').html(this.resetOptions);    
+    console.log(this.resetOptions);
     
     /**      
      * Add the bands rate into the value attribute of option in select element
@@ -125,9 +126,7 @@ FinanceCalculator.prototype.displayBands = function(rateBands){
     }
     
     //Remove all option that doesn't have makeSafe class attribute
-    $("#FinanceType option:not(.makeSafe)").remove();       
-    
-    console.log("Fianance option " + this.financeOption);
+    $("#FinanceType option:not(.makeSafe)").remove();  
 }
 
 /**

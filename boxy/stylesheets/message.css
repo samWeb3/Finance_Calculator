@@ -1,5 +1,5 @@
 #message{
-    margin: 1em 0em;
+    margin: 1em 0em;    
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.30);
     -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.30);
     -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.30);
@@ -26,4 +26,8 @@
 }
 .alignRight{
     text-align: right;
+}
+/*IE hacks*/
+#message{
+    margin-top: 2em\9 !important;/*ie 8 and below*/
 }

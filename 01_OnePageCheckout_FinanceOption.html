@@ -11,6 +11,7 @@
 <meta name="GOOGLEBOT" content="INDEX, FOLLOW" />
 
 
+
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
 
@@ -19,6 +20,8 @@
 
 
 <script type="text/javascript" src="/a/j/javascripts.js"></script>
+
+<!--script type='text/javascript'  src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script-->
 
 <script type="text/javascript">
 	var Config_Search_Auto_Complete = false;
@@ -1987,7 +1990,10 @@ function copy_billing_to_shipping()
 			<table width="100%"  border="0" cellspacing="0" cellpadding="0" id="v65-onepage-payment-details-parent-table">
             <tr>
             <td align="left" id="v65-checkout-payment-header"><img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/headings/one-page-checkout_payment.gif"><br>
+		<!--[if IE 7]>	
 	        <div style="text-align: center;"><span class="Apple-style-span" style="font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; font-weight: bold; ">Will I quality for finance? We can only consider your application if:</span></div><div style="text-align: center;"><span class="Apple-style-span" style="font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px; "><blockquote class="webkit-indent-blockquote" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 40px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; font-weight: bold; "></blockquote><ul><li>You are over 18 and employed at least 16 hours per week (retired &amp; houseperson applicants welcome)</li><li>You have a good credit history with no late payments, debt relief orders, CCJ's, IVA's or bankruptcies</li><li>You are a permanent UK resident and able to supply a UK address history for the last 3 year</li></ul></span></div><div style="text-align: center;"><br><span style="font-weight: bold; ">
+  <![endif]-->
+			    
 
 <style type="text/css">
 #PaymentMethodType [value='Check by Mail']
@@ -2082,243 +2088,243 @@ document.getElementById("PaymentMethodType").value=document.getElementById("Paym
             arg_current_span = '';
             //find out which payment method is selected
             switch(arg_PaymentMethodType) {
-            //hln interac
-            case 'Debit Card' :{ arg_current_span = 'debit_card'; break }
-            case 'Credit Card' : { arg_current_span = 'credit_card'; break }
-            case 'Electronic Check' : { arg_current_span = 'electronic_check'; break }
-            case 'Purchase Order Number' : { arg_current_span = 'purchase_order_number'; break }
-            default : { break }
-        }
-        //change the viewable form fields on the page now...
-        if (document.getElementById("span_paymentfields_" + previous_paymentfields_span)) { document.getElementById("span_paymentfields_" + previous_paymentfields_span).style.display = "none" }
-        if (document.getElementById("span_paymentfields_" + arg_current_span))            { document.getElementById("span_paymentfields_" + arg_current_span).style.display = "block" }
-        previous_paymentfields_span = arg_current_span;
+		//hln interac
+		case 'Debit Card' :{ arg_current_span = 'debit_card'; break }
+		case 'Credit Card' : { arg_current_span = 'credit_card'; break }
+		case 'Electronic Check' : { arg_current_span = 'electronic_check'; break }
+		case 'Purchase Order Number' : { arg_current_span = 'purchase_order_number'; break }
+		default : { break }
+	    }
+	    //change the viewable form fields on the page now...
+	    if (document.getElementById("span_paymentfields_" + previous_paymentfields_span)) { document.getElementById("span_paymentfields_" + previous_paymentfields_span).style.display = "none" }
+	    if (document.getElementById("span_paymentfields_" + arg_current_span))            { document.getElementById("span_paymentfields_" + arg_current_span).style.display = "block" }
+	    previous_paymentfields_span = arg_current_span;
         }
     </script>
-                       </td>
-                     </tr>
-					</table>
-<span id="span_paymentfields_" style="display:none" class="v65-onepage-payment-details">
-					<table width="100%" cellpadding="1" cellspacing="0" border="0" align="center">
-					 <tr>
+    </td>
+    </tr>
+			</table>
+			<span id="span_paymentfields_" style="display:none" class="v65-onepage-payment-details">
+			    <table width="100%" cellpadding="1" cellspacing="0" border="0" align="center">
+				<tr>
+					     
+				    <td id="v65-payment-details-label-cell-blank" width="39%" nowrap="nowrap" align="right"></td>
+				    <td id="v65-payment-details-label-cell-blank" width="61%"></td>
+				</tr>
+			    </table>
+			</span>
+    
+			<span id="span_paymentfields_electronic_check" class="v65-onepage-payment-details" style="display:none">
+    
+			    <table width="100%" cellpadding="1" cellspacing="0" border="0" align="center">
+				<tr>
+				    <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
+			   
+					Bank Name<font color="#FF0000">*</font>:&nbsp;</td>
+				    <td class="v65-payment-details-value-cell" width="61%">
+					<input name="BankName" value="" size="25" maxlength="30"> 
+				    </td>
+				</tr>
 
-                       <td id="v65-payment-details-label-cell-blank" width="39%" nowrap="nowrap" align="right"></td>
-                       <td id="v65-payment-details-label-cell-blank" width="61%"></td>
-                     </tr>
-					</table>
-</span>
+				<tr>
+				    <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
+					Account Type<font color="#FF0000">*</font>:&nbsp;</td>
+						    
+				    <td class="v65-payment-details-value-cell" width="61%">
+					<select name="AccountType">
+					    <option selected></option>
+					    <option value="CHECKING">CHECKING</option>
+					    <option value="SAVINGS">SAVINGS</option>
+					</select>
+				    </td>
+				</tr>
+			 
 
-<span id="span_paymentfields_electronic_check" class="v65-onepage-payment-details" style="display:none">
-
-					<table width="100%" cellpadding="1" cellspacing="0" border="0" align="center">
-					 <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
-
-						Bank Name<font color="#FF0000">*</font>:&nbsp;</td>
-                       <td class="v65-payment-details-value-cell" width="61%">
-						<input name="BankName" value="" size="25" maxlength="30"> 
-                       </td>
-                     </tr>
-					
-					 <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
-						Account Type<font color="#FF0000">*</font>:&nbsp;</td>
-
-                       <td class="v65-payment-details-value-cell" width="61%">
-						<select name="AccountType">
-						<option selected></option>
-						<option value="CHECKING">CHECKING</option>
-						<option value="SAVINGS">SAVINGS</option>
-						</select>
-                       </td>
-                     </tr>
-
-					
-					 <tr>
-                       <td width="39%" nowrap="nowrap" align="right" class="v65-payment-details-label-cell">
-						Routing Number<font color="#FF0000">*</font>:&nbsp;</td>
-                       <td class="v65-payment-details-value-cell" width="61%"><img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_routingsymbol.gif" width="14" height="18"> 
-						<input name="RoutingNumber" value="" size="20" maxlength="20" autocomplete="off">
+				<tr>
+				    <td width="39%" nowrap="nowrap" align="right" class="v65-payment-details-label-cell">
+					Routing Number<font color="#FF0000">*</font>:&nbsp;</td>
+				    <td class="v65-payment-details-value-cell" width="61%"><img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_routingsymbol.gif" width="14" height="18"> 
+					    <input name="RoutingNumber" value="" size="20" maxlength="20" autocomplete="off">
 						<img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_routingsymbol.gif" width="14" height="18">
-                       </td>
-                     </tr>
+						    </td>
+						    </tr>
+			 
+						    <tr>
+							<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right"></td>
+							<td width="61%" class="colors_backgroundneutral v65-payment-details-value-cell">
+							    <img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_routingsymbol.gif" alt="" width="14" height="18" />
+							    <span class="locate_routing_number_text">Is usually located between the <img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_routingsymbol.gif" width="14" height="18" align="absmiddle"> symbols on your check.</span></td>
+						    </tr>
 
-					 <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right"></td>
-                       <td width="61%" class="colors_backgroundneutral v65-payment-details-value-cell">
-					   	<img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_routingsymbol.gif" alt="" width="14" height="18" />
-						<span class="locate_routing_number_text">Is usually located between the <img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_routingsymbol.gif" width="14" height="18" align="absmiddle"> symbols on your check.</span></td>
-                     </tr>
-					
-					 <tr>
+						    <tr>
+					     
+							<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
+							    Account Number<font color="#FF0000">*</font>:&nbsp;</td>
+							<td class="v65-payment-details-value-cell" width="61%">
+							    <input name="AccountNumber" value="" size="20" maxlength="20" autocomplete="off">
+								<img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_accountsymbol.gif" width="10" height="12">
+								    </td>
+								    </tr>
+			 
+								    <tr>
+									<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right"></td>
+									<td class="v65-payment-details-value-cell" width="61%" class="colors_backgroundneutral"><img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_accountsymbol.gif" width="10" height="12" align="absmiddle" />
+									    <span class="locate_account_number_text">Typically comes before the <img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_accountsymbol.gif" width="10" height="12" align="absmiddle"> symbol. Its exact location and number of digits varies from bank to bank.</span></td>
+								    </tr>
 
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
-						Account Number<font color="#FF0000">*</font>:&nbsp;</td>
-                       <td class="v65-payment-details-value-cell" width="61%">
-						<input name="AccountNumber" value="" size="20" maxlength="20" autocomplete="off">
-						<img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_accountsymbol.gif" width="10" height="12">
-                       </td>
-                     </tr>
+								    <tr>
+									<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
+			   
+									    Check Number<font color="#FF0000">*</font>:&nbsp;</td>
+									<td class="v65-payment-details-value-cell" width="61%">
+									    <input name="CheckNumber" value="" size="25" maxlength="5"> 
+									</td>
+								    </tr>
+								    <tr>
+									<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right"></td>
+									<td class="v65-payment-details-value-cell" width="61%" class="colors_backgroundneutral">
+			   
+									    <span class="locate_check_number_text">Is usually located at the top and bottom of your check.</span></td>
+								    </tr>
 
-					 <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right"></td>
-                       <td class="v65-payment-details-value-cell" width="61%" class="colors_backgroundneutral"><img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_accountsymbol.gif" width="10" height="12" align="absmiddle" />
-					  <span class="locate_account_number_text">Typically comes before the <img src="https://www.furnitureonfinance.co.uk/v/vspfiles/templates/136/images/Account/Icon_eCheck_accountsymbol.gif" width="10" height="12" align="absmiddle"> symbol. Its exact location and number of digits varies from bank to bank.</span></td>
-                     </tr>
-					
-					 <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
+								    <tr>
+									<td nowrap="nowrap" align="right"></td>
+									<td><input type=checkbox name="Keep_Payment_Method_On_File_eCheck" value="Y" checked>
+										<span class="save_payment_method_text">Keep my payment method on file for easy checkout on future orders.</span>
+									</td>
+								    </tr>
+			 
 
-						Check Number<font color="#FF0000">*</font>:&nbsp;</td>
-                       <td class="v65-payment-details-value-cell" width="61%">
-						<input name="CheckNumber" value="" size="25" maxlength="5"> 
-                       </td>
-                     </tr>
-					 <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right"></td>
-                       <td class="v65-payment-details-value-cell" width="61%" class="colors_backgroundneutral">
+								    </table>
+					    
+								    </span>
+								    <span id="span_paymentfields_purchase_order_number" class="v65-onepage-payment-details" style="display:none">
+    
+									<table width="100%" cellpadding="1" cellspacing="0" border="0" align="center">
+									    <tr>
+										<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
+										    Purchase Order Number<font color="#FF0000">*</font>:&nbsp;</td>
+						    
+										<td class="v65-payment-details-value-cell" width="61%">
+										    <input name="PONum" value="" size="20" maxlength="20"> 
+										</td>
+									    </tr>
+									</table>
+								    </span>
+								    <!--'hln interac-->
+								    <span id="span_paymentfields_debit_card" class="v65-onepage-payment-details" style="display:none">
+									<table  width="100%" cellpadding="0" cellspacing="1" border="0" align="center">
+									    <tr><td class="" align='center' colspan='2'>Note that you must be enrolled in online banking with Interac Online to utilize the Debit Card option.</td></tr>
+					    
+									    <tr>
+										<td style="display:none" width="39%" nowrap="nowrap" align="right">Debit Card Type:</td>
+										<td width="61%">
+			   
+										    <SELECT  style='display:none' id="DebitCardType" name="DebitCardType">
+										    </SELECT>
+    
+										</td>
+									    </tr>
+									</table>
+								    </span>
+    
+								    <span id="span_paymentfields_credit_card" class="v65-onepage-payment-details" style="display:none">
+									<table width="100%" cellpadding="0" cellspacing="1" border="0" align="center">
+									    <tr>
+										<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">Credit / Debit Card Type:</td>
+										<td class="v65-payment-details-value-cell" width="61%">
+			   
+										    <SELECT id="CreditCardType" name="CreditCardType">
+											<OPTION  value="5">VISA</OPTION><OPTION  value="6">MASTERCARD</OPTION><OPTION  value="7">American Express</OPTION></SELECT>
+    
+    
+										</td>
+									    </tr>
+									    <tr>
+										<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">Credit / Debit Card Number:&nbsp;</td>
+										<td class="v65-payment-details-value-cell" width="61%"><input id="CreditCardNumber" name="CreditCardNumber" value="" size="20" maxlength="20" autocomplete="off">
+										</td>
+									    </tr>
+									    <tr>
+			 
+										<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">Name on Card:&nbsp;</td>
+										<td class="v65-payment-details-value-cell" width="61%"><input id="CardHoldersName" name="CardHoldersName" value="" size="20" maxlength="50">
+										</td>
+									    </tr>
 
-						<span class="locate_check_number_text">Is usually located at the top and bottom of your check.</span></td>
-                     </tr>
-					
-                    <tr>
-                       <td nowrap="nowrap" align="right"></td>
-                       <td><input type=checkbox name="Keep_Payment_Method_On_File_eCheck" value="Y" checked>
-							<span class="save_payment_method_text">Keep my payment method on file for easy checkout on future orders.</span>
-						</td>
-                     </tr>
+									    <tr>
+										<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">Expiration Date:&nbsp;</td>
+										<td class="v65-payment-details-value-cell" width="61%">
+										    <div id="CC_ExpDate" >
+			    
+											<select id="CC_ExpDate_Month" name="CC_ExpDate_Month">
+											    <option value="">Choose Month</option><option value="01">01 - January</option><option value="02">02 - February</option><option value="03">03 - March</option><option value="04">04 - April</option><option value="05">05 - May</option><option value="06">06 - June</option><option value="07">07 - July</option><option value="08">08 - August</option><option value="09">09 - September</option><option value="10">10 - October</option><option value="11">11 - November</option><option value="12">12 - December</option>
+			     
+											</select>
+											/
+											<select id="CC_ExpDate_Year" name="CC_ExpDate_Year" >
+											    <option value="">Choose Year</option>
+											    <option value="2011" >2011</option>
+											    <option value="2012" >2012</option>
+											    <option value="2013" >2013</option>
+											    <option value="2014" >2014</option>
+											    <option value="2015" >2015</option>
+											    <option value="2016" >2016</option>
+    
+											    <option value="2017" >2017</option>
+											    <option value="2018" >2018</option>
+											    <option value="2019" >2019</option>
+											    <option value="2020" >2020</option>
+											    <option value="2021" >2021</option>
+											    <option value="2022" >2022</option>
+											    <option value="2023" >2023</option>
+											    <option value="2024" >2024</option>
+											    <option value="2025" >2025</option>
+    
+											    <option value="2026" >2026</option>
+											</select>
+    
+										    </div>	
+										</td>
+									    </tr>
 
-					
-					</table>
+									    <tr>
+										<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
+										    Issue&nbsp;Number::
+										</td>
+					       
+										<td class="v65-payment-details-value-cell" width="61%">
+										    <table cellpadding="0" cellspacing="0" border="0"><tr><td>
+												<input name="CreditCardIssueNumber" value="" size="4" maxlength="3" autocomplete="off">
+												</td><td>&nbsp;</td><td>
+						      
+											    </td></tr></table>
+										</td>
+									    </tr>
 
-</span>
-<span id="span_paymentfields_purchase_order_number" class="v65-onepage-payment-details" style="display:none">
+									    <tr>
+										<td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
+			   
+										    <b>Security Code: </b><br> <a href="pCCV2.asp" onclick="window.open('Help_CCverify.asp', 'CVV2', 'resizable,width=440,height=375'); return false;">Click here for help </a>
+										</td>
+										<td class="v65-payment-details-value-cell" width="61%">
+										    <table cellpadding="0" cellspacing="0" border="0"><tr><td>
+												<input id="CVV2" name="CVV2" value="" size="4" maxlength="4" autocomplete="off">
+												</td><td>&nbsp;</td><td>
+						      
+											    </td></tr></table>
+						      
+										</td>
+									    </tr>
 
-					<table width="100%" cellpadding="1" cellspacing="0" border="0" align="center">
-					 <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
-						Purchase Order Number<font color="#FF0000">*</font>:&nbsp;</td>
+									    <tr>
+										<td nowrap="nowrap" align="right"></td>
+										<td><input type=checkbox name="Keep_Payment_Method_On_File_CCard" value="Y" checked>
+											Keep my payment method on file for easy checkout on future orders.
+										</td>
+									    </tr>
 
-                       <td class="v65-payment-details-value-cell" width="61%">
-						<input name="PONum" value="" size="20" maxlength="20"> 
-                       </td>
-                     </tr>
-					</table>
-</span>
-<!--'hln interac-->
-<span id="span_paymentfields_debit_card" class="v65-onepage-payment-details" style="display:none">
-					<table  width="100%" cellpadding="0" cellspacing="1" border="0" align="center">
-					<tr><td class="" align='center' colspan='2'>Note that you must be enrolled in online banking with Interac Online to utilize the Debit Card option.</td></tr>
-
-                     <tr>
-                       <td style="display:none" width="39%" nowrap="nowrap" align="right">Debit Card Type:</td>
-                       <td width="61%">
-
-<SELECT  style='display:none' id="DebitCardType" name="DebitCardType">
-</SELECT>
-					   
-                       </td>
-                     </tr>
-    				</table>
-</span>
-
-<span id="span_paymentfields_credit_card" class="v65-onepage-payment-details" style="display:none">
-					<table width="100%" cellpadding="0" cellspacing="1" border="0" align="center">
-                     <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">Credit / Debit Card Type:</td>
-                       <td class="v65-payment-details-value-cell" width="61%">
-
-<SELECT id="CreditCardType" name="CreditCardType">
-<OPTION  value="5">VISA</OPTION><OPTION  value="6">MASTERCARD</OPTION><OPTION  value="7">American Express</OPTION></SELECT>
-
-					   
-                       </td>
-                     </tr>
-                     <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">Credit / Debit Card Number:&nbsp;</td>
-                       <td class="v65-payment-details-value-cell" width="61%"><input id="CreditCardNumber" name="CreditCardNumber" value="" size="20" maxlength="20" autocomplete="off">
-                       </td>
-                     </tr>
-                     <tr>
-
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">Name on Card:&nbsp;</td>
-                       <td class="v65-payment-details-value-cell" width="61%"><input id="CardHoldersName" name="CardHoldersName" value="" size="20" maxlength="50">
-                       </td>
-                     </tr>
-					
-                     <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">Expiration Date:&nbsp;</td>
-                       <td class="v65-payment-details-value-cell" width="61%">
-			<div id="CC_ExpDate" >
-
-			 <select id="CC_ExpDate_Month" name="CC_ExpDate_Month">
-			 <option value="">Choose Month</option><option value="01">01 - January</option><option value="02">02 - February</option><option value="03">03 - March</option><option value="04">04 - April</option><option value="05">05 - May</option><option value="06">06 - June</option><option value="07">07 - July</option><option value="08">08 - August</option><option value="09">09 - September</option><option value="10">10 - October</option><option value="11">11 - November</option><option value="12">12 - December</option>
-
-			 </select>
-/
-			<select id="CC_ExpDate_Year" name="CC_ExpDate_Year" >
-<option value="">Choose Year</option>
-<option value="2011" >2011</option>
-<option value="2012" >2012</option>
-<option value="2013" >2013</option>
-<option value="2014" >2014</option>
-<option value="2015" >2015</option>
-<option value="2016" >2016</option>
-
-<option value="2017" >2017</option>
-<option value="2018" >2018</option>
-<option value="2019" >2019</option>
-<option value="2020" >2020</option>
-<option value="2021" >2021</option>
-<option value="2022" >2022</option>
-<option value="2023" >2023</option>
-<option value="2024" >2024</option>
-<option value="2025" >2025</option>
-
-<option value="2026" >2026</option>
-</select>
-
-			</div>	
-                       </td>
-                     </tr>
-					
-                     <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
-						Issue&nbsp;Number::
-					   </td>
-
-                       <td class="v65-payment-details-value-cell" width="61%">
-					   	  <table cellpadding="0" cellspacing="0" border="0"><tr><td>
-						  <input name="CreditCardIssueNumber" value="" size="4" maxlength="3" autocomplete="off">
-						  </td><td>&nbsp;</td><td>
-						  
-						  </td></tr></table>
-                       </td>
-                     </tr>
-					 
-                     <tr>
-                       <td class="v65-payment-details-label-cell" width="39%" nowrap="nowrap" align="right">
-
-						<b>Security Code: </b><br> <a href="pCCV2.asp" onclick="window.open('Help_CCverify.asp', 'CVV2', 'resizable,width=440,height=375'); return false;">Click here for help </a>
-					   </td>
-                       <td class="v65-payment-details-value-cell" width="61%">
-					   	  <table cellpadding="0" cellspacing="0" border="0"><tr><td>
-						  <input id="CVV2" name="CVV2" value="" size="4" maxlength="4" autocomplete="off">
-						  </td><td>&nbsp;</td><td>
-						  
-						  </td></tr></table>
-
-                       </td>
-                     </tr>
-					 
-                     <tr>
-                       <td nowrap="nowrap" align="right"></td>
-                       <td><input type=checkbox name="Keep_Payment_Method_On_File_CCard" value="Y" checked>
-							Keep my payment method on file for easy checkout on future orders.
-						</td>
-                     </tr>
-					
-					</table>
+									</table>
 
 </span>
 
@@ -3006,9 +3012,6 @@ v_ga_track("UA-2409708-23");
 <link rel="stylesheet" type="text/css" href="boxy/stylesheets/message.css" media="screen" />
 <script src="boxy/javascripts/jquery.boxy.js"></script>	
 <!--boxy assets ENDS-->
-
-
-
 
 <script type="text/javascript">function store_init(event){} AttachEvent(window, 'load', store_init);</script>
 

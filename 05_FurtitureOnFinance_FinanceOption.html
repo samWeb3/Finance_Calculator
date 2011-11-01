@@ -2012,8 +2012,7 @@ v_ga_track("UA-2409708-23");
 		    //Get the text inside the element Split the text "Now Only: £" from it
 		    var nowOnlySplit = $(this).text().split("Now Only: £");
 		    //replace (,) with space
-		    var nowOnlyPrice = nowOnlySplit[1].replace(/,/g, '');		    
-		    //console.log(i + ' = ' + nowOnlyPrice); //WARNING: Not commenting console.log() can cause unexpected behaviour in IE
+		    var nowOnlyPrice = nowOnlySplit[1].replace(/,/g, '');		    		    
 		
 		    //add new attribute 'value ' inside each element
 		    $(this).attr('value', nowOnlyPrice);
@@ -2024,9 +2023,7 @@ v_ga_track("UA-2409708-23");
 			var financeDeposit = 10;
 			var fDepositAmount = nowOnlyPrice * (financeDeposit/100);
 			var financeObject = new FinanceDetails(financeOption, parseFloat(nowOnlyPrice), parseInt(financeDeposit), parseInt(fDepositAmount));
-								
-			//$(this).append("<br><span class='min_installment'>Finance Option from: " + financeObject.m_inst + '</span>');			
-			
+						
 			/**
 			 * 1. selects the parent element 'td.v65-productDetailInfo' of each '.colors_productprice' element
 			 * 2. append table
