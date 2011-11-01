@@ -126,8 +126,6 @@ FinanceCalculator.prototype.displayBands = function(rateBands){
     
     //Remove all option that doesn't have makeSafe class attribute
     $("#FinanceType option:not(.makeSafe)").remove();       
-    
-    console.log("Fianance option " + this.financeOption);
 }
 
 /**
