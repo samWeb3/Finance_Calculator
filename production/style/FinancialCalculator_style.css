@@ -1,0 +1,256 @@
+
+
+#fcWrapper{
+    width: 500px;
+}
+
+#FinanceCalculator *{
+    font: 11px "Verdana", Helvetica, Arial, sans-serif;/*75%is12pxor1.2emof16px/linehight:1.6em(16px)*/
+    color: #333333;
+    line-height: 18px;
+}
+#FinanceCalculator {    
+    width: 100%;
+    background: #F8F8F8;
+    border: 1px solid #535353;
+}
+
+#FinanceTop {   
+    background-color: #535353;      
+}
+    #FinanceTop *{
+	font-size: 12px;
+    }
+    #FinanceTop label{
+	color: #ffffff;
+    }
+    #FinanceTop .pound{
+	color: #0096FF;
+	font-weight: bold;
+	font-size: 14px;
+    }
+    
+#FinanceMain label{
+    font-weight: bold;    
+}
+.price_entry{
+    color: #0096FF !important;    
+    width: 70px;
+    padding: 5px;
+}
+.view_finance{
+    padding: 4px 8px;    
+}
+.repayment_value{
+    margin: 20px 0px 10px 0px;
+    font-weight: bold !important; 
+    font-size: 12px !important;
+}
+.fd_monthly{
+    padding: 2px 0px;
+    border-top: 1px double #666666; 
+    border-bottom: double #666666;
+    margin-top: 17px;
+}
+#FinanceType, #FinanceDeposit{
+    width: 100%;
+    padding: 4px;    
+}
+#FinanceTop, #FinanceMain{
+    padding: 10px;
+}
+
+#FinanceCalculator select{
+    margin-bottom: 10px;
+}
+
+#fc_leftColumn{
+    float: left;
+    width: 48%;    
+}
+    #FinanceMain ul{/*Reset the default margin and padding of ul*/
+	margin: 0px;
+	padding: 0px;
+    }
+    #FinanceMain ul li{
+	list-style: none outside none;	
+	white-space: nowrap;
+	overflow: hidden;
+    }
+
+#fc_rightColumn{
+    float: right;
+    width: 48%;    
+}
+
+/*css specific to widget - STARTS*/
+#FinanceCalculator .toggleBar{
+    padding: 5px;
+    background-color: #535353;
+    color: #FFFFFF;
+}
+#FinanceCalculator .MonthlyRepay, #FinanceCalculator .highlight{
+    color: #0096FF;
+    font-weight: bold;
+}
+
+#FinanceCalculator .toggle {
+    color: #0096FF !important;
+    border-bottom: 1px solid;
+    font-weight: bold;
+    cursor: pointer;
+}
+/*css specific to widget - ENDS*/
+.boxy-wrapper { position: absolute; }
+.boxy-wrapper.fixed { position: fixed; }
+.boxy-wrapper * {
+    font: 12px/1.4 Arial, Helvetica, sans-serif; color: #484848;
+}
+
+  /* Modal */
+  
+  .boxy-modal-blackout { position: absolute; background-color: black; left: 0; top: 0; }
+  
+  /* Border */
+
+  .boxy-wrapper { empty-cells: show; }
+	.boxy-wrapper .top-left,
+	.boxy-wrapper .top-right,
+	.boxy-wrapper .bottom-right,
+	.boxy-wrapper .bottom-left { width: 10px; height: 10px; padding: 0 }
+	
+	.boxy-wrapper .top-left { background: url('../images/boxy-nw.png'); }
+	.boxy-wrapper .top-right { background: url('../images/boxy-ne.png'); }
+	.boxy-wrapper .bottom-right { background: url('../images/boxy-se.png'); }
+	.boxy-wrapper .bottom-left { background: url('../images/boxy-sw.png'); }
+	
+	/* IE6+7 hacks for the border. IE7 should support this natively but fails in conjuction with modal blackout bg. */
+	/* NB: these must be absolute paths or URLs to your images */
+	.boxy-wrapper .top-left { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-nw.png'); }
+	.boxy-wrapper .top-right { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-ne.png'); }
+	.boxy-wrapper .bottom-right { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-se.png'); }
+	.boxy-wrapper .bottom-left { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-sw.png'); }
+	
+	.boxy-wrapper .top,
+	.boxy-wrapper .bottom { height: 10px; background-color: black; opacity: 0.6; filter: alpha(opacity=60); padding: 0 }
+	
+	.boxy-wrapper .left,
+	.boxy-wrapper .right { width: 10px; background-color: black; opacity: 0.6; filter: alpha(opacity=60); padding: 0 }
+	
+	/* Title bar */
+	
+	.boxy-wrapper .title-bar { background-color: black; padding: 6px; position: relative; }
+	  .boxy-wrapper .title-bar.dragging { cursor: move; }
+	    .boxy-wrapper .title-bar h2 { font-size: 12px; color: white; line-height: 1; margin: 0; padding: 0; font-weight: normal; }
+	    .boxy-wrapper .title-bar .close { color: white; position: absolute; top: 6px; right: 6px; font-size: 90%; line-height: 1; }
+		
+	/* Content Region */
+	
+	.boxy-inner { background-color: white; padding: 0 }
+	.boxy-content { padding: 15px; }
+	
+	/* Question Boxes */
+
+    .boxy-wrapper .question { width: 350px; min-height: 80px; }
+    .boxy-wrapper .answers { text-align: right; }
+
+    /* Accept Decline Cancel Buttons */
+    .button{
+	padding: 5px;
+	margin-left: 5px;
+	margin-top: 10px;
+	border: 1px solid #cccccc;
+    }
+    
+    .marginT20px{
+	margin-top: 20px !important;
+    }
+    .alignCenter{
+	text-align: center;
+    }
+
+    /*dialog boxes*/  
+    
+    title-bar h1 { font-size: 180%; font-weight: bold; margin: 0 0 15px 0; border-bottom: 1px solid #a0a0a0; color: black; }
+    title-bar h1 .subtitle { font-size: 75%; }
+
+    title-bar h2 { font-size: 130%; font-weight: bold; margin: 1em 0 0.3em 0; color: black; }
+    title-bar h3 { font-size: 115%; font-weight: bold; margin: 1em 0 0.3em 0; color: black; }
+
+    .boxy-content p { margin: 0.7em 0 }
+
+    .boxy-content a { color: #101010; text-decoration: none }
+    .boxy-content a:hover { background-color: #505050; color: white; }
+
+    .boxy-content ul, ol { margin: 0.7em 0 0.7em 2em; }
+    .boxy-content li { display: list-item; list-style: disc; }
+
+
+
+.marginTB10px {
+    margin: 10px 0px;
+}
+
+.cursor{
+    cursor: pointer;
+}
+
+.shadow {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    -mox-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);    
+}
+
+.group:after {/*fix the problem when floating div right within the main container*/
+    content: ".";
+    display: block;
+    height: 0px;
+    clear: both;
+    visibility: hidden;
+}
+/*IE Fix*/
+html.group {
+    height: 1%;
+}
+:first-child + html .group {
+    min-height: 1px;
+}
+ 
+
+/* Styles for message box*/
+    
+#message{
+    margin: 1em 0em;    
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.30);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.30);
+}
+.error_message {
+    color: #666666;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #FFEBE8;
+    border: medium none #DD3C10;    
+}
+.success_message {
+    background-color: #ECFFD5;
+    border: medium none #BAE09B;
+}
+.success_message p {
+    font-size: 1em;
+    padding-bottom: 0;
+}
+.messageBox {
+    border-style: solid;
+    border-width: 1px;
+    padding: 0.833em;
+}
+.alignRight{
+    text-align: right;
+}
+/*IE hacks*/
+#message{
+    margin-top: 2em\9 !important;/*ie 8 and below*/
+}
+
+           
