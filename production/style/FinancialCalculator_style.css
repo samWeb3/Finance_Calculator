@@ -1,9 +1,6 @@
-
-
-#fcWrapper{
+#fcWrapper, #Finance_Widget{
     width: 500px;
 }
-
 #FinanceCalculator *{
     font: 11px "Verdana", Helvetica, Arial, sans-serif;/*75%is12pxor1.2emof16px/linehight:1.6em(16px)*/
     color: #333333;
