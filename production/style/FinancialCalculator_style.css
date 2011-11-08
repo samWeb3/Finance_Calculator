@@ -93,9 +93,12 @@
 
 #FinanceCalculator .toggle {
     color: #0096FF !important;
-    border-bottom: 1px solid;
+    border-bottom: 1px dotted;
     font-weight: bold;
     cursor: pointer;
+}
+.toggleHover{
+    border-bottom: 1px solid !important;
 }
 /*css specific to widget - ENDS*/
 .boxy-wrapper { position: absolute; }
@@ -249,5 +252,3 @@ html.group {
 #message{
     margin-top: 2em\9 !important;/*ie 8 and below*/
 }
-
-           

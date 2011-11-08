@@ -19,7 +19,8 @@
 #fc_rightColumn{float:right;width:48%;}
 #FinanceCalculator .toggleBar{background-color:#535353;color:#FFF;padding:5px;}
 #FinanceCalculator .MonthlyRepay,#FinanceCalculator .highlight{color:#0096FF;font-weight:700;}
-#FinanceCalculator .toggle{color:#0096FF!important;border-bottom:1px solid;font-weight:700;cursor:pointer;}
+#FinanceCalculator .toggle{color:#0096FF!important;border-bottom:1px dotted;font-weight:700;cursor:pointer;}
+.toggleHover{border-bottom:1px solid!important;}
 .boxy-wrapper{position:absolute;empty-cells:show;}
 .boxy-wrapper.fixed{position:fixed;}
 .boxy-wrapper *{font:12px/1.4 Arial, Helvetica, sans-serif;color:#484848;}

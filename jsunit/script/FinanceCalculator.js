@@ -1,11 +1,11 @@
 /**
  * Finance Calculator for IdealHomeStore['ideal'] and FurnitureOnFinance['furniture']
  * 
- * @param string financeOption	    Fiance option selected from <Select> DropDown menu
- * @param int	 orderTotal	    Total Value of money Spent by Customer
- * @param int	 financeDeposit	    Finance deposit selected from Discount DropDown menu
- * @param string rateType	    'ideal' or 'finance' 
- * @param string resetOptions	    Reset the state of the <select> element
+ * @param financeOption	    Fiance option selected from <Select> DropDown menu
+ * @param orderTotal	    Total Value of money Spent by Customer
+ * @param financeDeposit	    Finance deposit selected from Discount DropDown menu
+ * @param rateType	    'ideal' or 'finance' 
+ * @param resetOptions	    Reset the state of the <select> element
  */
 function FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions){
    
@@ -110,7 +110,7 @@ FinanceCalculator.prototype.ratesDisplayFinance = function(){
 /**
  * Adds appropriate sets of rates options on the <select> dropdown list
  * 
- * @param array rateBands   bands of array filtered from ratesDisplayFinance() or ratesDisplayIdeal()
+ * @param rateBands   bands of array filtered from ratesDisplayFinance() or ratesDisplayIdeal()
  */
 FinanceCalculator.prototype.displayBands = function(rateBands){
     //Reset the state of <SELECT> element back to original one
@@ -167,4 +167,3 @@ function create(options, message) {
     new Boxy("<div><p>" + message + ".</p>" + "<p class='alignCenter marginT20px'><a class='button' href='#' onclick='Boxy.get(this).hide(); return false'>OK</a></p></div>", options);      
     return false;
 }
-

@@ -1,5 +1,5 @@
 var FinanceWidget = {
-    financeOption: 'Select Finance Option:', 
+    financeOption: 'Select Finance Option1:', 
     financeDeposit: 'Select Deposit:'		
 };
 
@@ -7,23 +7,27 @@ var FinanceWidget = {
 	
 //Loading External Template
 $.get('production/templating/FinanceCalculator_Widget.html', function(fc){
-    $.tmpl(fc, FinanceWidget).appendTo("#Finance_Widget" );
+    $.tmpl(fc, FinanceWidget).appendTo("#Finance_Widget");
 });
   
 $(document).ready(function() {
-    var nowOnlyPrice = $('.colors_productprice').text();//Now Only: £376.18 	    
+    
+    var nowOnlyPrice = $('.colors_productprice').text();//Now Only: £376.18 	        
     var nowOnlyPriceSplit = nowOnlyPrice.split("Now Only: £");//,376.18 
     var orderTotal = nowOnlyPriceSplit[1].replace(/,/g, '');//376.18		    
     var rateType = 'finance';	    	    
-    var financeDeposit =  $('#FinanceDeposit').val();	    
+    var financeDeposit = $('#FinanceDeposit').val();
+    
+    var financeOption;
     if (orderTotal >= 2000 && rateType == 'finance'){
-	var financeOption = $('#FinanceType [value="ONIF36"]').val();		    
+	financeOption = $('#FinanceType [value="ONIF36"]').val();
+	
     } else {
-	var financeOption = $('#FinanceType').val();		    
+	financeOption = $('#FinanceType').val();	
     }
 	    
     var resetOptions = $('#FinanceType').html(); //save the state of the <select> element
-	    
+    	    
     try{
 	var fc = new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions);
     } catch (e){
@@ -34,8 +38,7 @@ $(document).ready(function() {
 	    }, e.message);
 	}
     }
-    var f_details = fc.returnFinanceOption();
-	    
+    var f_details = fc.returnFinanceOption();   
     var f_data = {
 	fd_price: "\u00A3" + f_details.goods_val,
 	fd_deposit_percent: "\u00A3" + f_details.d_pc,
@@ -57,6 +60,8 @@ $(document).ready(function() {
     });
 	  
     $('#FinanceMain').hide();
+
+    $('.toggle').hover(function(){$(this).addClass('toggleHover')}, function(){$(this).removeClass('toggleHover')});
 
     $('.toggle').click(function(){
 	$('#FinanceMain').toggle("slow");

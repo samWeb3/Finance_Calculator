@@ -10,14 +10,14 @@ function FinanceCalculatorException(message){
 /**
  * Finance Calculator for IdealHomeStore['ideal'] and FurnitureOnFinance['furniture']
  * 
- * @param string financeOption	    Fiance option selected from <Select> DropDown menu
- * @param int	 orderTotal	    Total Value of money Spent by Customer
- * @param int	 financeDeposit	    Finance deposit selected from Discount DropDown menu
- * @param string rateType	    'ideal' or 'finance' 
- * @param string resetOptions	    Reset the state of the <select> element
+ * @param financeOption	    Fiance option selected from <Select> DropDown menu
+ * @param orderTotal	    Total Value of money Spent by Customer
+ * @param financeDeposit    Finance deposit selected from Discount DropDown menu
+ * @param rateType	    'ideal' or 'finance' 
+ * @param resetOptions	    Reset the state of the <select> element
+ * @param parentElement    parent element of ('.color_productPrice), in case of Finance Cal on product page
  */
-function FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions){
-   
+function FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions, parentElement){   
     //Furniture on Finance [Placed on page] Rates Band
     this.finance_rateA = ['ONIF6', 'ONIF12', 'ONIB24-19.5', 'ONIB36-19.5'];
     this.finance_rateB = ['ONIF6', 'ONIF12', 'ONIF24', 'ONIB36-19.5'];
@@ -33,7 +33,8 @@ function FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, 
     this.financeDeposit = financeDeposit;
     this.fDepositAmount = orderTotal *(financeDeposit/100);
     this.rateType = rateType;
-    this.resetOptions = resetOptions;    
+    this.resetOptions = resetOptions; 
+    this.parentElement = parentElement;
     
     //Once object is initialized init() method is called to determine bands of rates and generate table for financial calculator
     this.init();
@@ -55,7 +56,7 @@ FinanceCalculator.prototype.init = function(){
 	    this.generateTable();
 	    break;
 	case 'productDetails':
-	    this.ratesDisplayFinance();	    
+	    this.ratesDisplayFinance();
 	    break;	 
 	default:
 	    throw new FinanceCalculatorException("Invalid Rate Type: [ENTER: ideal, finance or productDetails]!");
@@ -80,8 +81,13 @@ FinanceCalculator.prototype.ratesDisplayIdeal = function(){
     } else if (this.orderTotal >= 2000){
 	$('#FinanceMain').show("slow");
 	rateBands = this.ideal_rateC;		
-    }    
-    this.displayBands(rateBands);
+    }   
+    
+    if (this.parentElement){
+	this.displayBandsProducts(rateBands);
+    } else {
+	this.displayBands(rateBands);   
+    }
 }
 
 /**
@@ -112,29 +118,54 @@ FinanceCalculator.prototype.ratesDisplayFinance = function(){
 	    $('#FinanceMain').show("slow");    
 	} 
 	rateBands = this.finance_rateC;		
-    }    
-    this.displayBands(rateBands);   
+    }     
+    
+    if (this.parentElement){
+	this.displayBandsProducts(rateBands);
+    } else {
+	this.displayBands(rateBands);   
+    }
 }
 
 /**
  * Adds appropriate sets of rates options on the <select> dropdown list
  * 
- * @param array rateBands   bands of array filtered from ratesDisplayFinance() or ratesDisplayIdeal()
+ * @param rateBands   bands of array filtered from ratesDisplayFinance() or ratesDisplayIdeal()
  */
 FinanceCalculator.prototype.displayBands = function(rateBands){
     //Reset the state of <SELECT> element back to original one
+    
     $('#FinanceType').html(this.resetOptions);        
     
     /**      
      * Add the bands rate into the value attribute of option in select element
      * Then add the class="makeSafe"
      */
-    for (var i in rateBands){	
+    for (var i in rateBands){
 	$("#FinanceType option[value="+rateBands[i]+"]").addClass('makeSafe');
     }
     
     //Remove all option that doesn't have makeSafe class attribute
     $("#FinanceType option:not(.makeSafe)").remove();       
+}
+
+/**
+ * Adds appropriate sets of rates options on the <select> dropdown list on Product page
+ * 
+ * @param rateBands   bands of array filtered from ratesDisplayFinance() or ratesDisplayIdeal()
+ */
+FinanceCalculator.prototype.displayBandsProducts = function(rateBands){       
+    
+    /**      
+     * Add the bands rate into the value attribute of option in select element
+     * Then add the class="makeSafe"
+     */
+    for (var i in rateBands){
+	this.parentElement.find("#FinanceType option[value="+rateBands[i]+"]").addClass('makeSafe');
+    }
+    
+    //Remove all option that doesn't have makeSafe class attribute
+    this.parentElement.find("#FinanceType option:not(.makeSafe)").remove();       
 }
 
 /**
@@ -160,7 +191,7 @@ FinanceCalculator.prototype.generateTable = function(){
 * Use FinanceDetails class API 
 * Pass the value to the financial calculator
 */
-FinanceCalculator.prototype.returnFinanceOption = function(){       
+FinanceCalculator.prototype.returnFinanceOption = function(){   
     var financialDetails = new FinanceDetails(this.financeOption, parseFloat(this.orderTotal), parseInt(this.financeDeposit), parseFloat(this.fDepositAmount));       
     return financialDetails;
 }

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Test Page for multiplyAndAddFive(value1, value2)</title>
+        <title>Finance Calculator Class Test Page</title>
         <script language="javascript" src="../app/jsUnitCore.js"></script>
         <script language="javascript" src="../script/jquery.js"></script>
         <script type="text/javascript" src="https://secure.pay4later.com/js_api/FinanceDetails.js.php?api_key=4ab5a98226e33c32d9daf8722f2ab764"></script>
@@ -70,6 +70,39 @@
                 var test6b = ['option1', 'option2', [1,2,3]];
                 assertFalse('Arrays with nested array, should fail to match.', $(test6a).compare(test6b));
             }
+	    
+	    function testFConProductDetailsFunction(){
+		var data = _productDetailsDataProvider();
+		for (i=0; i<data.length; i++){
+		    dataRow = data[i];
+		    try {
+			var fc = new FinanceCalculator(dataRow[0], dataRow[1], dataRow[2], dataRow[3], dataRow[4]);
+			assertNotNull("Should return Fc calculator object", fc);
+			console.log("Finance Calculator object: " + fc);
+		    } catch (e) {
+			if (e.name == 'fCException')
+                        {
+                            fail('Failed to create FinanceCalculator object with given message: ' + e.message);
+                            return false;
+                        } else {
+                            fail(e.jsUnitMessage);
+                        }
+		    }
+		}
+	    }
+	    
+	    function _productDetailsDataProvider(){
+		var tests = [
+		    ['ONIB36-19.5', '2000', '10', 'productDetails', $('#ResetFinanceType').html()],		    
+		    ['ONIB36-19.5', '1000', '10', 'productDetails', $('#ResetFinanceType').html()],
+		    ['ONIB36-19.5', '1000', '10', 'productDetails', $('#ResetFinanceType').html()],		    
+		    ['ONIF6', '2000', '10', 'productDetails', $('#ResetFinanceType').html()],		    
+		    ['ONIF6', '1000', '10', 'productDetails', $('#ResetFinanceType').html()],
+		    ['ONIF6', '400', '10', 'productDetails', $('#ResetFinanceType').html()],		    
+		    ['ONIF6', '100', '10', 'productDetails', $('#ResetFinanceType').html()],		    
+		];
+		return tests;
+	    }
             
             /**
              * Run through the test data provided by the dataProvider method.
@@ -78,7 +111,7 @@
                 var data = _dataProvider();
                 for(i=0;i<data.length;i++) {
                     dataRow = data[i];
-					console.log((i + 1) + ". Data length: " + data[i]);
+		    console.log((i + 1) + ". Data length: " + data[i]);
                     try {
                         // financeOption, orderTotal, financeDeposit, rateType, resetOptions
                         new FinanceCalculator(dataRow[0], dataRow[1], dataRow[2], dataRow[3], dataRow[4]);
@@ -104,55 +137,81 @@
             function _dataProvider() {
                 // Row: financeOption, orderTotal, financeDeposit, rateType, resetOptions, failMessage, assertResult, assertSelect, aassertResult, assertValues
                 var tests = [
-				['ONIF6', '500', '10', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIF6', '500', '10', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£500.00', '10.00%', '£50.00', '£450.00', '6 months', '£450.00', '£75.00', '£75.00']],
-				['ONIF6', '600', '10', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIF6', '600', '10', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£600.00', '10.00%', '£60.00', '£540.00', '6 months', '£540.00', '£90.00', '£90.00']],
-				['ONIF6', '1500', '10', 'ideal', $('#ResetFinanceType').html(),
-						'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '10.00%', '£150.00', '£1350.00', '6 months', '£1350.00', '£225.00', '£225.00']],
-				['ONIF6', '3400', '10', 'ideal', $('#ResetFinanceType').html(),
-						'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£3400.00', '10.00%', '£340.00', '£3060.00', '6 months', '£3060.00', '£510.00', '£510.00']],
-				['ONIF6', '900', '10', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIF6', '1500', '10', 'ideal', $('#ResetFinanceType').html(),
+			'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '10.00%', '£150.00', '£1350.00', '6 months', '£1350.00', '£225.00', '£225.00']],
+		    ['ONIF6', '3400', '10', 'ideal', $('#ResetFinanceType').html(),
+			'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£3400.00', '10.00%', '£340.00', '£3060.00', '6 months', '£3060.00', '£510.00', '£510.00']],
+		    ['ONIF6', '900', '10', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£900.00', '10.00%', '£90.00', '£810.00', '6 months', '£810.00', '£135.00', '£135.00']],
-				['ONIF6', '900', '10', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIF6', '900', '10', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', false, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£900.00', '10.00%', '£90.00', '£810.00', '6 months', '£810.00', '£135.00', '£135.00']],
-				['ONIF12', '1000', '10', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIF12', '1000', '10', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1000.00', '10.00%', '£100.00', '£900.00', '12 months', '£900.00', '£75.00', '£75.00']],
-				['ONIF12', '3500', '10', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIF12', '3500', '10', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£3500.00', '10.00%', '£350.00', '£3150.00', '12 months', '£3150.00', '£262.50', '£262.50']],
-				['ONIF12', '700', '10', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIF12', '700', '10', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£700.00', '10.00%', '£70.00', '£630.00', '12 months', '£630.00', '£52.50', '£52.50']],
-				['ONIB24-19.5', '600', '20', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIB24-19.5', '600', '20', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£600.00', '20.00%', '£120.00', '£480.00', '24 months', '£574.78', '£23.95', '£23.95']],
-				['ONIB24-19.5', '1500', '20', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIB24-19.5', '1500', '20', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '20.00%', '£300.00', '£1200.00', '24 months', '£1436.94', '£59.87', '£59.87']],
-				['ONIF24', '3100', '20', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIF24', '3100', '20', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£3100.00', '20.00%', '£620.00', '£2480.00', '24 months', '£2480.00', '£103.33', '£103.33']],
-				['ONIB36-19.5', '5000', '20', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIB36-19.5', '5000', '20', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£5000.00', '20.00%', '£1000.00', '£4000.00', '36 months', '£5202.01', '£144.50', '£144.50']],
-				['ONIB36-19.5', '999.99', '20', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIB36-19.5', '999.99', '20', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIB12-19.5", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£999.99', '20.00%', '£200.00', '£799.99', '36 months', '£1040.39', '£28.90', '£28.90']],										
-                ['ONIB36-19.5', '1500', '20', 'ideal', $('#ResetFinanceType').html(),
+		    ['ONIB36-19.5', '1500', '20', 'ideal', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '20.00%', '£300.00', '£1200.00', '36 months', '£1560.60', '£43.35', '£43.35']],																
-				['ONIF6', '500', '10', 'finance', $('#ResetFinanceType').html(),
+		    ['ONIF6', '500', '10', 'finance', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£500.00', '10.00%', '£50.00', '£450.00', '6 months', '£450.00', '£75.00', '£75.00']],
-				['ONIF6', '1500', '10', 'finance', $('#ResetFinanceType').html(),
+		    ['ONIF6', '1500', '10', 'finance', $('#ResetFinanceType').html(),
                         'Select options not correct.', false, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '10.00%', '£150.00', '£1350.00', '6 months', '£1350.00', '£225.00', '£225.00']],
-				['ONIF6', '3500', '10', 'finance', $('#ResetFinanceType').html(),
+		    ['ONIF6', '3500', '10', 'finance', $('#ResetFinanceType').html(),
                         'Select options not correct.', false, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£3500.00', '10.00%', '£350.00', '£3150.00', '6 months', '£3150.00', '£525.00', '£525.00']],
-				['ONIF12', '3500', '10', 'finance', $('#ResetFinanceType').html(),
+		    ['ONIF12', '3500', '10', 'finance', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', true, ['£3500.00', '10.00%', '£350.00', '£3150.00', '12 months', '£3150.00', '£262.50', '£262.50']],
-				['ONIF12', '1500', '10', 'finance', $('#ResetFinanceType').html(),
+		    ['ONIF12', '1500', '10', 'finance', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '10.00%', '£150.00', '£1350.00', '12 months', '£1350.00', '£112.50', '£112.50']],
-				['ONIF12', '3500', '10', 'finance', $('#ResetFinanceType').html(),
+		    ['ONIF12', '3500', '10', 'finance', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', true, ['£3500.00', '10.00%', '£350.00', '£3150.00', '12 months', '£3150.00', '£262.50', '£262.50']],
-				['ONIF24', '3500', '10', 'finance', $('#ResetFinanceType').html(),
+		    ['ONIF24', '3500', '10', 'finance', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', true, ['£3500.00', '10.00%', '£350.00', '£3150.00', '24 months', '£3150.00', '£131.25', '£131.25']],
-				['ONIF24', '1500', '10', 'finance', $('#ResetFinanceType').html(),
+		    ['ONIF24', '1500', '10', 'finance', $('#ResetFinanceType').html(),
                         'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', true, ['£1500.00', '10.00%', '£150.00', '£1350.00', '24 months', '£1350.00', '£56.25', '£56.25']],
-				['ONIB24-19.5', '500', '10', 'finance', $('#ResetFinanceType').html(),
-                        'Select options not correct.', false, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', true, ['£500.00', '10.00%', '£50.00', '£450.00', '24 months', '£538.85', '£22.45', '£22.45']],														
-				];
+		    ['ONIB24-19.5', '500', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', false, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', true, ['£500.00', '10.00%', '£50.00', '£450.00', '24 months', '£538.85', '£22.45', '£22.45']],
+		    ['ONIF6', '400', '10', 'finance', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', true, ['£400.00', '10.00%', '£40.00', '£360.00', '6 months', '£360.00', '£60.00', '£60.00']],		    
+		    ['ONIF6', '600', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', false, ['£600.00', '10.00%', '£60.00', '£540.00', '6 months', '£540.00', '£90.00', '£90.00']],		    
+		    ['ONIF6', '1000', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', false, ['£1000.00', '10.00%', '£100.00', '£900.00', '6 months', '£900.00', '£75.00', '£75.00']],
+		    ['ONIF6', '2000', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', false, ['£2000.00', '10.00%', '£200.00', '£1800.00', '6 months', '£1800.00', '£300.00', '£300.00']],		    
+		    ['ONIF12', '600', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', false, ['£600.00', '10.00%', '£60.00', '£540.00', '6 months', '£540.00', '£90.00', '£90.00']],		    
+		    ['ONIF12', '1000', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', false, ['£1000.00', '10.00%', '£100.00', '£900.00', '6 months', '£900.00', '£75.00', '£75.00']],
+		    ['ONIF12', '2000', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', false, ['£2000.00', '10.00%', '£200.00', '£1800.00', '6 months', '£1800.00', '£300.00', '£300.00']],		    
+		    ['ONIB24-19.5', '600', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', false, ['£600.00', '10.00%', '£60.00', '£540.00', '6 months', '£540.00', '£90.00', '£90.00']],		    
+		    ['ONIF24', '1000', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', false, ['£1000.00', '10.00%', '£100.00', '£900.00', '6 months', '£900.00', '£75.00', '£75.00']],
+		    ['ONIF24', '2000', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', false, ['£2000.00', '10.00%', '£200.00', '£1800.00', '6 months', '£1800.00', '£300.00', '£300.00']],		    
+		    ['ONIB36-19.5', '600', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIB24-19.5", "ONIB36-19.5"], 'Finance details not correct.', false, ['£600.00', '10.00%', '£60.00', '£540.00', '6 months', '£540.00', '£90.00', '£90.00']],		    
+		    ['ONIB36-19.5', '1000', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIB36-19.5"], 'Finance details not correct.', false, ['£1000.00', '10.00%', '£100.00', '£900.00', '6 months', '£900.00', '£75.00', '£75.00']],
+		    ['ONIB36-19.5', '2000', '10', 'productDetails', $('#ResetFinanceType').html(),
+                        'Select options not correct.', true, ["ONIF6", "ONIF12", "ONIF24", "ONIF36"], 'Finance details not correct.', false, ['£2000.00', '10.00%', '£200.00', '£1800.00', '6 months', '£1800.00', '£300.00', '£300.00']],		    
+		];
                 return tests;
             }   
             
@@ -208,7 +267,7 @@
             <option value="ONIF36">36 Months Interest Free Credit</option>
             <option value="ONIB36-19.5" SELECTED>36 Months Classic Credit</option>
         </select>
-        
+
         <select id="FinanceType">			    
             <option value="ONIF6">6 Months Interest Free Credit</option>
             <option value="ONIB6-19.5">6 Months Classic Credit</option>
