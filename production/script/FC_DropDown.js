@@ -36,14 +36,6 @@ $(document).ready(function()
 		}	    
 	    });	
 	}
-
-	$('#PaymentMethodTypeDisplay').change(function()
-	{
-	    if($('#PaymentMethodTypeDisplay option:selected').html() == 'Finance' && price < 300)
-	    {
-		alert('Finance is not an option for orders under £300.');
-	    }
-	});
     });
 /**
  * Hides the finance option from the SELECT dropdown menu
