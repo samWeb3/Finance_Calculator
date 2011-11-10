@@ -1,5 +1,5 @@
 var FinanceWidget = {
-    financeOption: 'Select Finance Option1:', 
+    financeOption: 'Select Finance Option:', 
     financeDeposit: 'Select Deposit:'		
 };
 
