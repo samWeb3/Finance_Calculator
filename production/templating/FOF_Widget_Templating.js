@@ -1,15 +1,3 @@
-var FinanceWidget = {
-    financeOption: 'Select Finance Option1:', 
-    financeDeposit: 'Select Deposit:'		
-};
-
-//$("#financeCalculator_widget").tmpl(FinanceWidget).appendTo("#Finance_Widget" );
-	
-//Loading External Template
-$.get('production/templating/FinanceCalculator_Widget.html', function(fc){
-    $.tmpl(fc, FinanceWidget).appendTo("#Finance_Widget");
-});
-  
 $(document).ready(function() {
     
     var nowOnlyPrice = $('.colors_productprice').text();//Now Only: £376.18 	        

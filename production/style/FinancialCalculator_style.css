@@ -131,6 +131,12 @@
 	.boxy-wrapper .bottom-right { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-se.png'); }
 	.boxy-wrapper .bottom-left { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-sw.png'); }
 	
+	/* IE7 Fix for corner border*/
+	*.boxy-wrapper .top-left {#background: url('../images/boxy-nw.png');}
+	*.boxy-wrapper .top-right {#background: url('../images/boxy-ne.png');}
+	*.boxy-wrapper .bottom-right {#background: url('../images/boxy-se.png');}
+	*.boxy-wrapper .bottom-left {#background: url('../images/boxy-sw.png');}
+	
 	.boxy-wrapper .top,
 	.boxy-wrapper .bottom { height: 10px; background-color: black; opacity: 0.6; filter: alpha(opacity=60); padding: 0 }
 	

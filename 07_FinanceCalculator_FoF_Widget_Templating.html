@@ -21,8 +21,11 @@ https://github.com/jquery/jquery-tmpl/blob/master/jquery.tmpl.js
 
 	<!--FOF Widgets Style, Script STARTS -->
 	<link rel="stylesheet" href="production/style/FinancialCalculator_style.css" type="text/css" />	
-	<script src="production/script/jquery.boxy.js"></script>
-	<script src="production/script/FinanceCalculator.js" type="text/javascript"></script>    
+
+	<!--Need to be Loaded before FinanceCalculator.js and jquery.boxy.js [don't know why]  -->
+	<script type="text/javascript" src="production/templating/FOF_Widget_PreLoad.js"></script>
+	<script type="text/javascript" src="production/script/jquery.boxy.js"></script>  
+	<script src="production/script/FinanceCalculator.js" type="text/javascript"></script>  
 	<script type="text/javascript" src="production/templating/FOF_Widget_Templating.js"></script>    
 	<!--FOF Widgets Script ENDS -->
     </body>
