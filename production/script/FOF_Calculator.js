@@ -1,4 +1,6 @@
 $(document).ready(function(){		
+    $('.price_entry').focus().select();
+    
     var rateType = 'finance';
     var resetOptions = $('#FinanceType').html(); //saves the original state of the <select> element		
 		
@@ -71,9 +73,10 @@ $(document).ready(function(){
  */
 function calculateMonInst(e){
     if (e && e.keyCode == 13){		    
-	$('#triggerButton').click();//invoke calculate button
-	var priceEntryInput = $('.price_entry');
-	priceEntryInput.focus().select();	
+	$('#triggerButton').click();//invoke calculate button	
+	//$('#triggerButton').blur();
+	
+	$('.price_entry').focus().select();		
 	
 	var boxyOKButton = $('.boxy-content .button');
 	
@@ -83,6 +86,6 @@ function calculateMonInst(e){
 	 */
 	if (boxyOKButton){
 	    boxyOKButton.focus();
-	}  
+	} 
     }
 }
