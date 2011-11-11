@@ -66,16 +66,19 @@ $(document).ready(function(){
 
 function calculateMonInst(e){
     if (e && e.keyCode == 13){		    
-	document.getElementById('triggerButton').click();
+	$('#triggerButton').click();//invoke calculate button
+	var priceEntryInput = $('.price_entry');
+	priceEntryInput.focus().select();
+	
+	
+	var boxyOKButton = $('.boxy-content .button');
+	
+	/**
+	 * If a boxy dialog box exist then set a focus on its button
+	 * Else multiple instance of boxy diolog box pop-ups when enter button clicked
+	 */
+	if (boxyOKButton){
+	    boxyOKButton.focus();
+	}  
     }
 }
-
-// Cross-browser implementation of element.addEventListener()
- function eventListener(evnt, elem, func) {
-      if (elem.addEventListener) // W3C DOM
-	elem.addEventListener(evnt,func,false);
-      else if (elem.attachEvent) { // IE DOM
-	var r = elem.attachEvent("on"+evnt, func);
-	return r;
-      }      
- }
