@@ -61,3 +61,21 @@ $(document).ready(function(){
 	}
     }
 });
+
+
+
+function calculateMonInst(e){
+    if (e && e.keyCode == 13){		    
+	document.getElementById('triggerButton').click();
+    }
+}
+
+// Cross-browser implementation of element.addEventListener()
+ function eventListener(evnt, elem, func) {
+      if (elem.addEventListener) // W3C DOM
+	elem.addEventListener(evnt,func,false);
+      else if (elem.attachEvent) { // IE DOM
+	var r = elem.attachEvent("on"+evnt, func);
+	return r;
+      }      
+ }
