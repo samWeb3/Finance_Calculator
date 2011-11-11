@@ -60,16 +60,20 @@ $(document).ready(function(){
 	    }, e.message);
 	}
     }
+    
+    //add onKeyPress attribute on input field
+    $('.price_entry').attr('onKeyPress', 'return calculateMonInst(event)');
 });
 
 
-
+/**
+ * When Enter key is pressed on Price Entry Input box, Calculate button is invoked!
+ */
 function calculateMonInst(e){
     if (e && e.keyCode == 13){		    
 	$('#triggerButton').click();//invoke calculate button
 	var priceEntryInput = $('.price_entry');
-	priceEntryInput.focus().select();
-	
+	priceEntryInput.focus().select();	
 	
 	var boxyOKButton = $('.boxy-content .button');
 	
