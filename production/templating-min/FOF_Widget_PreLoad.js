@@ -1,1 +1,0 @@
-var FinanceWidget={financeOption:"Select Finance Option:",financeDeposit:"Select Deposit:"};$.get("production/templating/FinanceCalculator_Widget.html",function(a){$.tmpl(a,FinanceWidget).appendTo("#Finance_Widget")});
