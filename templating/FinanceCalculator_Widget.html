@@ -1,0 +1,45 @@
+<div id="FinanceCalculator">
+    <div id="WidgetBar">
+	<div class="toggleBar">BUY FROM ONLY <span class="MonthlyRepay"></span>&nbsp;PER MONTH. <strong class="toggle">FIND OUT MORE</strong></div>
+    </div>
+
+    <div id="FinanceMain" class="group">
+	<div id="fc_leftColumn">
+	    <label>${financeOption}</label><br>
+	    <select id="FinanceType">
+		<option value="ONIF6">6 Months Interest Free Credit</option>
+		<option value="ONIB6-19.5">6 Months Classic Credit</option>
+		<option value="ONIF12">12 Months Interest Free Credit</option>
+		<option value="ONIB12-19.5">12 Months Classic Credit</option>
+		<option value="ONIF24">24 Months Interest Free Credit</option>
+		<option value="ONIB24-19.5">24 Months Classic Credit</option>
+		<option value="ONIF36">36 Months Interest Free Credit</option>
+		<option value="ONIB36-19.5" SELECTED>36 Months Classic Credit</option>
+	    </select>
+	    <ul>
+		<li>Price</li>
+		<li>Deposit(&#37;)</li>
+		<li>Deposit(&#163;)</li>
+		<li>Loan Amount</li>
+		<li>Term Agreement</li>
+		<li>APR</li>
+		<li>Loan Repayment</li>
+		<li>Cost of Loan</li>
+		<li>Total Amount</li>
+		<li class="repayment_value">Monthly Installment</li>
+	    </ul>		    
+	</div>
+	<div id="fc_rightColumn">
+	    <label>${financeDeposit}</label><br>
+	    <select id="FinanceDeposit">
+		<option value="10" class="deposit10">10%</option>
+		<option value="20" class="deposit20">20%</option>
+		<option value="30" class="deposit30">30%</option>
+		<option value="40" class="deposit40">40%</option>
+		<option value="50" class="deposit50">50%</option>
+	    </select>
+	    <div id="fc_values">
+	    </div>		    
+	</div>
+    </div>		
+</div>
