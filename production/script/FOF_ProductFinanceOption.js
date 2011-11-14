@@ -14,7 +14,7 @@ $(document).ready(function(){
 	    /*
 	     ** $(this).parents('td.v65-productDetailInfo'): select parent element of ('.color_productPrice) and assign it to var
 	     */			
-	    var parentElement = $(this).parents('td.v65-productDetailInfo');			
+	    var parentElement = $(this).parents('td.v65-productDetailInfo');				
 			
 	    /**
 	     * 1. selects the parent element 'td.v65-productDetailInfo' of each '.colors_productprice' element

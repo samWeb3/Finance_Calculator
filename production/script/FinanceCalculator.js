@@ -204,7 +204,7 @@ function create(options, message) {
     options = $.extend({
 	title: "Notification"
     }, options || {});
-    new Boxy("<div><p>" + message + ".</p>" + "<p class='alignCenter marginT20px'><a class='button' href='#' onclick='Boxy.get(this).hide(); return false'>OK</a></p></div>", options);      
+    new Boxy("<div><p>" + message + "</p>" + "<p class='alignCenter marginT20px'><a class='button' href='#' onclick='Boxy.get(this).hideAndUnload(); return false'>OK</a></p></div>", options);      
     return false;
 }
 
