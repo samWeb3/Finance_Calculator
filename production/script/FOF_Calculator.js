@@ -62,9 +62,6 @@ $(document).ready(function(){
 	    }, e.message);
 	}
     }
-<<<<<<< HEAD
-});
-=======
     
     //add onKeyPress attribute on input field
     $('.price_entry').attr('onKeyPress', 'calculateMonInst(event)');    
@@ -115,4 +112,3 @@ function addFocusOKButton(){ //set a focus on ok button
 	}, 10); //IE fix 	
     }    
 }
->>>>>>> UI_Test
