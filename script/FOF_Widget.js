@@ -6,7 +6,7 @@ $(document).ready(function(){
     $('.toggle').hover(function(){$(this).addClass('toggleHover')}, function(){$(this).removeClass('toggleHover')});
 		
     $('.toggle').click(function(){	
-	$('#FinanceMain').toggle("slow");	
+	$('#FinanceMain').slideToggle("slow");	
     });	    
 				
     var nowOnlyPrice = $('.colors_productprice').text();//Now Only: £376.18 

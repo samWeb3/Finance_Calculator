@@ -1,5 +1,8 @@
-#fcWrapper, #Finance_Widget{
+#fcWrapper{
     width: 500px;
+}
+#Finance_Widget{
+    width: 100%;
 }
 #FinanceCalculator *{
     font: 11px "Verdana", Helvetica, Arial, sans-serif;/*75%is12pxor1.2emof16px/linehight:1.6em(16px)*/
@@ -15,18 +18,18 @@
 #FinanceTop {   
     background-color: #535353;      
 }
-    #FinanceTop *{
-	font-size: 12px;
-    }
-    #FinanceTop label{
-	color: #ffffff;
-    }
-    #FinanceTop .pound{
-	color: #0096FF;
-	font-weight: bold;
-	font-size: 14px;
-    }
-    
+#FinanceTop *{
+    font-size: 12px;
+}
+#FinanceTop label{
+    color: #ffffff;
+}
+#FinanceTop .pound{
+    color: #0096FF;
+    font-weight: bold;
+    font-size: 14px;
+}
+
 #FinanceMain label{
     font-weight: bold;    
 }
@@ -65,15 +68,15 @@
     float: left;
     width: 48%;    
 }
-    #FinanceMain ul{/*Reset the default margin and padding of ul*/
-	margin: 0px;
-	padding: 0px;
-    }
-    #FinanceMain ul li{
-	list-style: none outside none;	
-	white-space: nowrap;
-	overflow: hidden;
-    }
+#FinanceMain ul{/*Reset the default margin and padding of ul*/
+    margin: 0px;
+    padding: 0px;
+}
+#FinanceMain ul li{
+    list-style: none outside none;	
+    white-space: nowrap;
+    overflow: hidden;
+}
 
 #fc_rightColumn{
     float: right;
@@ -107,91 +110,91 @@
     font: 12px/1.4 Arial, Helvetica, sans-serif; color: #484848;
 }
 
-  /* Modal */
-  
-  .boxy-modal-blackout { position: absolute; background-color: black; left: 0; top: 0; }
-  
-  /* Border */
+/* Modal */
 
-  .boxy-wrapper { empty-cells: show; }
-	.boxy-wrapper .top-left,
-	.boxy-wrapper .top-right,
-	.boxy-wrapper .bottom-right,
-	.boxy-wrapper .bottom-left { width: 10px; height: 10px; padding: 0 }
-	
-	.boxy-wrapper .top-left { background: url('../images/boxy-nw.png'); }
-	.boxy-wrapper .top-right { background: url('../images/boxy-ne.png'); }
-	.boxy-wrapper .bottom-right { background: url('../images/boxy-se.png'); }
-	.boxy-wrapper .bottom-left { background: url('../images/boxy-sw.png'); }
-	
-	/* IE6+7 hacks for the border. IE7 should support this natively but fails in conjuction with modal blackout bg. */
-	/* NB: these must be absolute paths or URLs to your images */
-	.boxy-wrapper .top-left { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-nw.png'); }
-	.boxy-wrapper .top-right { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-ne.png'); }
-	.boxy-wrapper .bottom-right { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-se.png'); }
-	.boxy-wrapper .bottom-left { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-sw.png'); }
-	
-	/* IE7 Fix for corner border*/
-	*.boxy-wrapper .top-left {#background: url('../images/boxy-nw.png');}
-	*.boxy-wrapper .top-right {#background: url('../images/boxy-ne.png');}
-	*.boxy-wrapper .bottom-right {#background: url('../images/boxy-se.png');}
-	*.boxy-wrapper .bottom-left {#background: url('../images/boxy-sw.png');}
-	
-	.boxy-wrapper .top,
-	.boxy-wrapper .bottom { height: 10px; background-color: black; opacity: 0.6; filter: alpha(opacity=60); padding: 0 }
-	
-	.boxy-wrapper .left,
-	.boxy-wrapper .right { width: 10px; background-color: black; opacity: 0.6; filter: alpha(opacity=60); padding: 0 }
-	
-	/* Title bar */
-	
-	.boxy-wrapper .title-bar { background-color: black; padding: 6px; position: relative; }
-	  .boxy-wrapper .title-bar.dragging { cursor: move; }
-	    .boxy-wrapper .title-bar h2 { font-size: 12px; color: white; line-height: 1; margin: 0; padding: 0; font-weight: normal; }
-	    .boxy-wrapper .title-bar .close { color: white; position: absolute; top: 6px; right: 6px; font-size: 90%; line-height: 1; }
-		
-	/* Content Region */
-	
-	.boxy-inner { background-color: white; padding: 0 }
-	.boxy-content { padding: 15px; }
-	
-	/* Question Boxes */
+.boxy-modal-blackout { position: absolute; background-color: black; left: 0; top: 0; }
 
-    .boxy-wrapper .question { width: 350px; min-height: 80px; }
-    .boxy-wrapper .answers { text-align: right; }
+/* Border */
 
-    /* Accept Decline Cancel Buttons */
-    .button{
-	padding: 5px;
-	margin-left: 5px;
-	margin-top: 10px;
-	border: 1px solid #cccccc;
-    }
-    
-    .marginT20px{
-	margin-top: 20px !important;
-    }
-    .alignCenter{
-	text-align: center;
-    }
+.boxy-wrapper { empty-cells: show; }
+.boxy-wrapper .top-left,
+.boxy-wrapper .top-right,
+.boxy-wrapper .bottom-right,
+.boxy-wrapper .bottom-left { width: 10px; height: 10px; padding: 0 }
 
-    /*dialog boxes*/  
-    
-    title-bar h1 { font-size: 180%; font-weight: bold; margin: 0 0 15px 0; border-bottom: 1px solid #a0a0a0; color: black; }
-    title-bar h1 .subtitle { font-size: 75%; }
+.boxy-wrapper .top-left { background: url('../images/boxy-nw.png'); }
+.boxy-wrapper .top-right { background: url('../images/boxy-ne.png'); }
+.boxy-wrapper .bottom-right { background: url('../images/boxy-se.png'); }
+.boxy-wrapper .bottom-left { background: url('../images/boxy-sw.png'); }
 
-    title-bar h2 { font-size: 130%; font-weight: bold; margin: 1em 0 0.3em 0; color: black; }
-    title-bar h3 { font-size: 115%; font-weight: bold; margin: 1em 0 0.3em 0; color: black; }
+/* IE6+7 hacks for the border. IE7 should support this natively but fails in conjuction with modal blackout bg. */
+/* NB: these must be absolute paths or URLs to your images */
+.boxy-wrapper .top-left { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-nw.png'); }
+.boxy-wrapper .top-right { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-ne.png'); }
+.boxy-wrapper .bottom-right { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-se.png'); }
+.boxy-wrapper .bottom-left { #background: none; #filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/boxy-sw.png'); }
 
-    .boxy-content p { margin: 0.7em 0 }
+/* IE7 Fix for corner border*/
+*.boxy-wrapper .top-left {#background: url('../images/boxy-nw.png');}
+*.boxy-wrapper .top-right {#background: url('../images/boxy-ne.png');}
+*.boxy-wrapper .bottom-right {#background: url('../images/boxy-se.png');}
+*.boxy-wrapper .bottom-left {#background: url('../images/boxy-sw.png');}
 
-    .boxy-content a { color: #101010; text-decoration: none }
-    .boxy-content a:hover { background-color: #505050; color: white; }
+.boxy-wrapper .top,
+.boxy-wrapper .bottom { height: 10px; background-color: black; opacity: 0.6; filter: alpha(opacity=60); padding: 0 }
 
-    .boxy-content ul, ol { margin: 0.7em 0 0.7em 1em; }
-    .boxy-content li { display: list-item; list-style: none; line-height: 2em;}
-    .boxy-content .alert{ display: none; }
-    .boxy-content input[type="checkbox"] { margin-right: 8px;}
+.boxy-wrapper .left,
+.boxy-wrapper .right { width: 10px; background-color: black; opacity: 0.6; filter: alpha(opacity=60); padding: 0 }
+
+/* Title bar */
+
+.boxy-wrapper .title-bar { background-color: black; padding: 6px; position: relative; }
+.boxy-wrapper .title-bar.dragging { cursor: move; }
+.boxy-wrapper .title-bar h2 { font-size: 12px; color: white; line-height: 1; margin: 0; padding: 0; font-weight: normal; }
+.boxy-wrapper .title-bar .close { color: white; position: absolute; top: 6px; right: 6px; font-size: 90%; line-height: 1; }
+
+/* Content Region */
+
+.boxy-inner { background-color: white; padding: 0 }
+.boxy-content { padding: 15px; }
+
+/* Question Boxes */
+
+.boxy-wrapper .question { width: 350px; min-height: 80px; }
+.boxy-wrapper .answers { text-align: right; }
+
+/* Accept Decline Cancel Buttons */
+.button{
+    padding: 5px;
+    margin-left: 5px;
+    margin-top: 10px;
+    border: 1px solid #cccccc;
+}
+
+.marginT20px{
+    margin-top: 20px !important;
+}
+.alignCenter{
+    text-align: center;
+}
+
+/*dialog boxes*/  
+
+title-bar h1 { font-size: 180%; font-weight: bold; margin: 0 0 15px 0; border-bottom: 1px solid #a0a0a0; color: black; }
+title-bar h1 .subtitle { font-size: 75%; }
+
+title-bar h2 { font-size: 130%; font-weight: bold; margin: 1em 0 0.3em 0; color: black; }
+title-bar h3 { font-size: 115%; font-weight: bold; margin: 1em 0 0.3em 0; color: black; }
+
+.boxy-content p { margin: 0.7em 0 }
+
+.boxy-content a { color: #101010; text-decoration: none }
+.boxy-content a:hover { background-color: #505050; color: white; }
+
+.boxy-content ul, ol { margin: 0.7em 0 0.7em 1em; }
+.boxy-content li { display: list-item; list-style: none; line-height: 2em;}
+.boxy-content .alert{ display: none; }
+.boxy-content input[type="checkbox"] { margin-right: 8px;}
 
 
 
@@ -224,10 +227,10 @@ html.group {
 :first-child + html .group {
     min-height: 1px;
 }
- 
+
 
 /* Styles for message box*/
-    
+
 #message{
     margin: 1em 0em;    
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.30);
