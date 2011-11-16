@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Sambhu Raj Singh">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <link href="images/favicon.ico" rel="shortcut icon">
+
+        <title>Furniture on finance - Finance Calculator</title>
+
+        <script src="Mordernizr/modernizr.min.js"></script>
+
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!--[if IE]><script type="text/javascript" src="iePlugins/excanvas.js"></script><![endif]-->	
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>	
+	<script type="text/javascript" src="https://secure.pay4later.com/js_api/FinanceDetails.js.php?api_key=4ab5a98226e33c32d9daf8722f2ab764"></script>	
+
+        
+    </head>
+    <body>
+	<div id="fcWrapper">
+	    <div id="FinanceCalculator">
+		<div id="FinanceTop">
+		    <label>How much would you like to spend? <span class="pound">&pound;</span></label>
+		    <input type="text" class="price_entry" value="300.00" />&nbsp;
+		    <input type="submit" value="Calculate" class="view_finance" id="triggerButton" />
+		</div>
+
+		<div id="FinanceMain" class="group">
+		    <div id="fc_leftColumn">
+			<label>Select Finance Option:</label><br>
+			<select id="FinanceType">			    
+			    <option value="ONIF6">6 Months Interest Free Credit</option>
+			    <option value="ONIB6-19.5">6 Months Classic Credit</option>
+			    <option value="ONIF12">12 Months Interest Free Credit</option>
+			    <option value="ONIB12-19.5">12 Months Classic Credit</option>
+			    <option value="ONIF24">24 Months Interest Free Credit</option>
+			    <option value="ONIB24-19.5">24 Months Classic Credit</option>
+			    <option value="ONIF36">36 Months Interest Free Credit</option>
+			    <option value="ONIB36-19.5" SELECTED>36 Months Classic Credit</option>
+			</select>
+			<ul>
+			    <li>Price</li>
+			    <li>Deposit(&#37;)</li>
+			    <li>Deposit(&#163;)</li>
+			    <li>Loan Amount</li>
+			    <li>Term Agreement</li>
+			    <li>APR</li>
+			    <li>Loan Repayment</li>
+			    <li>Cost of Loan</li>
+			    <li>Total Amount</li>
+			    <li class="repayment_value">Monthly Installment</li>
+			</ul>		    
+		    </div>
+		    <div id="fc_rightColumn">
+			<label>Select Deposit:</label><br>
+			<select id="FinanceDeposit">
+			    <option value="10" class="deposit10">10%</option>
+			    <option value="20" class="deposit20">20%</option>
+			    <option value="30" class="deposit30">30%</option>
+			    <option value="40" class="deposit40">40%</option>
+			    <option value="50" class="deposit50">50%</option>
+			</select>
+			<ul>
+			    <li class="fd_price"></li>
+			    <li class="fd_deposit_percent"></li>
+			    <li class="fd_deposit"></li>
+			    <li class="fd_loanamount"></li>
+			    <li class="fd_terms"></li>
+			    <li class="fd_apr"></li>
+			    <li class="fd_loanrepay"></li>
+			    <li class="fd_loancost"></li>
+			    <li class="fd_totalrepay"></li>
+			    <li class="fd_monthly repayment_value"></li>
+			</ul>
+		    </div>
+		</div>
+	    </div>
+	</div>  
+	
+	<div id="display" class="highlight"></div>
+	
+	<!--FOF Financial Calculator Style, Script ENDS -->
+	<link rel="stylesheet" href="style/FinancialCalculator_style.css" type="text/css" />	
+	<script src="script/jquery.boxy.js"></script>			
+	<script src="script/FinanceCalculator.js" type="text/javascript"></script>
+	<script src="script/FOF_Calculator.js" type="text/javascript"></script>
+	<!--FOF Financial Calculator Style, Script ENDS -->
+
+    </body>
+</html>
