@@ -47,16 +47,16 @@ function FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, 
  */
 FinanceCalculator.prototype.init = function(){
     switch (this.rateType){
-	case 'ideal':	    
+	case 'ideal':	    	    
 	    this.ratesDisplayIdeal();	    
 	    this.generateTable();
 	    break;
-	case 'finance':	  	 
+	case 'finance':	  	 	    
 	    this.ratesDisplayFinance();
 	    this.generateTable();
 	    break;
-	case 'productDetails':
-	    this.ratesDisplayFinance();
+	case 'productDetails':	   
+	    this.ratesDisplayProductDetails();
 	    break;	 
 	default:
 	    throw new FinanceCalculatorException("Invalid Rate Type: [ENTER: ideal, finance or productDetails]!");
@@ -100,10 +100,47 @@ FinanceCalculator.prototype.ratesDisplayFinance = function(){
 	if (!toggleBar){
 	    $('#FinanceMain').hide("slow");
 	    throw new FinanceCalculatorException("Order Total less than \u00A3300 !");
-	} else {
+	} else {	    
 	    $('.toggleBar').html('PLACE ORDER ABOVE <span class="highlight">\u00A3300</span> TO VIEW FINANCE OPTION!');	
 	}
     } else if (this.orderTotal >= 300 && this.orderTotal < 1000) {
+	if (!toggleBar){
+	    $('#FinanceMain').show("slow");    
+	}	
+	rateBands = this.finance_rateA;	
+    } else if (this.orderTotal >= 1000 && this.orderTotal < 2000){
+	if (!toggleBar){
+	    $('#FinanceMain').show("slow");    
+	} 
+	rateBands = this.finance_rateB;			
+    } else if (this.orderTotal >= 2000){
+	if (!toggleBar){
+	    $('#FinanceMain').show("slow");    
+	} 
+	rateBands = this.finance_rateC;		
+    }     
+    
+    if (this.parentElement){
+	this.displayBandsProducts(rateBands);
+    } else {
+	this.displayBands(rateBands);   
+    }
+}
+
+/**
+ * Filters bands of rates Based on the orderTotal for Furniture on Finance
+ */
+FinanceCalculator.prototype.ratesDisplayProductDetails = function(){        
+    var toggleBar = document.getElementById('WidgetBar');
+    var rateBands;
+    if (this.orderTotal < 0){
+	if (!toggleBar){
+	    $('#FinanceMain').hide("slow");
+	    throw new FinanceCalculatorException("Order Total less than \u00A3300 !");
+	} else {	    
+	    $('.toggleBar').html('Order Less than <span class="highlight">\u00A30</span>');	
+	}
+    } else if (this.orderTotal > 0 && this.orderTotal < 1000) {
 	if (!toggleBar){
 	    $('#FinanceMain').show("slow");    
 	}	

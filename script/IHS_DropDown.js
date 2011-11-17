@@ -12,7 +12,7 @@ $(document).ready(function()
     price = jQuery.trim(price);
     price = price.substr(1);
 
-    if(price < 300)
+    if(price < 500)
     {
 	hideFinanceOption();
     }
