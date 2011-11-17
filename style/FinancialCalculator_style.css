@@ -45,7 +45,7 @@
 }
 
 #FinanceMain label{
-    font-weight: bold;    
+    font-weight: bold !important;    
 }
 .price_entry{
     color: #0096FF !important;    
@@ -323,4 +323,10 @@ html.group {
 /*IE hacks*/
 #message{
     margin-top: 2em\9 !important;/*ie 8 and below*/
+}
+.repayment_value{
+    *margin-bottom: -5px;/*ie 7 hacks */
+}
+.fd_monthly{
+    border-top: 1px solid #666666\9;/*ie 8*/
 }

@@ -3,15 +3,22 @@ $(document).ready(function(){
     
     $('#FinanceMain').hide();
     
-    $('.toggle').hover(function(){$(this).addClass('toggleHover')}, function(){$(this).removeClass('toggleHover')});
+    $('.toggle').hover(function(){
+	$(this).addClass('toggleHover')
+    }, function(){
+	$(this).removeClass('toggleHover')
+    });
 		
     $('.toggle').click(function(){	
 	$('#FinanceMain').slideToggle("slow");	
-    });	    
-				
+    });
+	
     var nowOnlyPrice = $('.colors_productprice').text();//Now Only: £376.18 
-    var nowOnlyPriceSplit = nowOnlyPrice.split("Now Only: £");//,376.18 
-    var orderTotal = nowOnlyPriceSplit[1].replace(/,/g, '');//376.18	
+    var nowOnlyPriceSplit = nowOnlyPrice.split("Now Only: £");//,376.18 	
+    
+    if (!(nowOnlyPriceSplit[1] == undefined)){ //need this check to ensure the script doesn't breaks if nowOnlyPriceSplit[1] is undefined 	
+	var orderTotal = nowOnlyPriceSplit[1].replace(/,/g, '');//376.18	    
+    } 
     var rateType = 'finance';
     var financeOption;
     if (orderTotal >= 2000 && rateType == 'finance'){	
@@ -25,12 +32,13 @@ $(document).ready(function(){
     try {
 	new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType, resetOptions); 		    
     } catch (e){
-	if (e.name == 'fCException')
+	/*if (e.name == 'fCException')
 	{
 	    return create({
 		modal: true
 	    }, e.message);
-	}
+	}*/
+	//console.log(e);
     }
 		
     //if dropdown menu selected
@@ -45,12 +53,13 @@ $(document).ready(function(){
 	    //No need to pass resetOption to a constructor when calculating from the <select> dropdown box itself.
 	    new FinanceCalculator(financeOption, orderTotal, financeDeposit, rateType); 
 	} catch (e){
-	    if (e.name == 'fCException')
+	    /*if (e.name == 'fCException')
 	    {
 		return create({
 		    modal: true
 		}, e.message);
-	    }
+	    }*/
+	    //console.log(e);
 	}
-    });		       
+    });	
 });

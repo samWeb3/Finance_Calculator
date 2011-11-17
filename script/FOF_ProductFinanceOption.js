@@ -3,9 +3,10 @@ $(document).ready(function(){
     $('.colors_productprice').each(function(){
 	//Get the text inside the element Split the text "Now Only: £" from it
 	var nowOnlySplit = $(this).text().split("Now Only: £");
-	//replace (,) with space
-	var nowOnlyPrice = nowOnlySplit[1].replace(/,/g, '');		    		    
-		
+	if (!(nowOnlySplit[1] == undefined)){ //need this check to ensure the script doesn't breaks if nowOnlyPriceSplit[1] is undefined 	
+	    //replace (,) with space
+	    var nowOnlyPrice = nowOnlySplit[1].replace(/,/g, '');		    		    
+	}
 	//add new attribute 'value' inside each element
 	$(this).attr('value', nowOnlyPrice);
 		    
@@ -20,9 +21,10 @@ $(document).ready(function(){
 	    if (nowOnlyPrice < 300) {
 		var difference = 300 - nowOnlyPrice;
 		var differenceRound = Math.round(difference*100)/100;
-		lessThan = 'Spend Another <span class="priceHighlight">&pound;' + differenceRound + '</span> to Qualify for Finance';
+		lessThan = 'Spend Another <span class="priceHighlight">&pound;' + differenceRound + '</span> to Qualify for Finance.';
+		lessThanDiv = '<div class="lessThan">' + lessThan + '<div>'
 	    } else {
-		lessThan = "";
+		lessThanDiv = "";
 	    }
 	    
 	    //if width of parent element is greater than 200px, display the finance calculator
@@ -31,7 +33,7 @@ $(document).ready(function(){
 		 * 1. selects the parent element 'td.v65-productDetailInfo' of each '.colors_productprice' element
 		 * 2. append table
 		 */			
-		parentElement.append('<table border="0" width="100%"><tr><td colspan="2"><div id="FinanceCalculatorProducts" class="marginTB10px"><div id="WidgetBar"><div class="toggleBarProduct cursor">FINANCE OPTION FROM: <span class="MonthlyRepay">£0</span><span class="small">&nbsp;P/M</span></div></div><div id="FinanceMain" class="group"><div id="fc_leftColumn"><label>Finance<br /> Option:</label><br><select id="FinanceType"><option value="ONIF6">6 Months Interest Free Credit</option><option value="ONIB6-19.5">6 Months Classic Credit</option><option value="ONIF12">12 Months Interest Free Credit</option><option value="ONIB12-19.5">12 Months Classic Credit</option><option value="ONIF24">24 Months Interest Free Credit</option><option value="ONIB24-19.5">24 Months Classic Credit</option><option value="ONIF36">36 Months Interest Free Credit</option><option value="ONIB36-19.5" SELECTED>36 Months Classic Credit</option></select><ul><li>Price</li><li>Deposit(&#37;)</li><li>Deposit(&#163;)</li><li>Loan Amount</li><li>Term Agreement</li><li>APR</li><li>Loan Repayment</li><li>Cost of Loan</li><li>Total Amount</li><li class="repayment_value">Monthly Installment</li></ul></div><div id="fc_rightColumn"><label>Select<br /> Deposit:</label><br><select id="FinanceDeposit"><option value="10" class="deposit10">10%</option><option value="20" class="deposit20">20%</option><option value="30" class="deposit30">30%</option><option value="40" class="deposit40">40%</option><option value="50" class="deposit50">50%</option></select><ul><li class="fd_price"></li><li class="fd_deposit_percent"></li><li class="fd_deposit"></li><li class="fd_loanamount"></li><li class="fd_terms"></li><li class="fd_apr"></li><li class="fd_loanrepay"></li><li class="fd_loancost"></li><li class="fd_totalrepay"></li><li class="fd_monthly repayment_value"></li></ul></div><div class="lessThan">' + lessThan +  '</div></div></div></td></tr></table>');
+		parentElement.append('<table border="0" width="100%"><tr><td colspan="2"><div id="FinanceCalculatorProducts" class="marginTB10px"><div id="WidgetBar"><div class="toggleBarProduct cursor">FINANCE OPTION FROM: <span class="MonthlyRepay">£0</span><span class="small">&nbsp;P/M</span></div></div><div id="FinanceMain" class="group"><div id="fc_leftColumn"><label>Finance<br /> Option:</label><br><select id="FinanceType"><option value="ONIF6">6 Months Interest Free Credit</option><option value="ONIB6-19.5">6 Months Classic Credit</option><option value="ONIF12">12 Months Interest Free Credit</option><option value="ONIB12-19.5">12 Months Classic Credit</option><option value="ONIF24">24 Months Interest Free Credit</option><option value="ONIB24-19.5">24 Months Classic Credit</option><option value="ONIF36">36 Months Interest Free Credit</option><option value="ONIB36-19.5" SELECTED>36 Months Classic Credit</option></select><ul><li>Price</li><li>Deposit(&#37;)</li><li>Deposit(&#163;)</li><li>Loan Amount</li><li>Term Agreement</li><li>APR</li><li>Loan Repayment</li><li>Cost of Loan</li><li>Total Amount</li><li class="repayment_value">Monthly<br /> Installment</li></ul></div><div id="fc_rightColumn"><label>Select<br /> Deposit:</label><br><select id="FinanceDeposit"><option value="10" class="deposit10">10%</option><option value="20" class="deposit20">20%</option><option value="30" class="deposit30">30%</option><option value="40" class="deposit40">40%</option><option value="50" class="deposit50">50%</option></select><ul><li class="fd_price"></li><li class="fd_deposit_percent"></li><li class="fd_deposit"></li><li class="fd_loanamount"></li><li class="fd_terms"></li><li class="fd_apr"></li><li class="fd_loanrepay"></li><li class="fd_loancost"></li><li class="fd_totalrepay"></li><li class="fd_monthly repayment_value"></li></ul></div>' + lessThanDiv +  '</div></div></td></tr></table>');
 			
 		/* Once Table has been appended
 		 * find('#FinanceMain').hide()	    finds #FinanceMain() div and hides it
@@ -43,12 +45,12 @@ $(document).ready(function(){
 		 * As above find the .toggle class
 		 */					
 		parentElement.find('#WidgetBar').click(function(){
-		    parentElement.find('.lessThan').css('background-color', 'white');//to ensure background is always set to white when WidgetBar clicked
+		    parentElement.find('.lessThan').css('background-color', '#F8F8F8');//to ensure background is always set to white when WidgetBar clicked
 		    parentElement.find('#FinanceMain').slideToggle("slow");
 		    parentElement.find('.toggleBarProduct').toggleClass('toggleBarActive');
 		    parentElement.find('#FinanceCalculatorProducts').toggleClass('FinCalActive');
 		    if (nowOnlyPrice < 300){
-			parentElement.find('.lessThan').animateHighlight("#ffcc00", 2500);		   
+			parentElement.find('.lessThan').animateHighlight("#ffcc00", 3000);		   
 		    }		    
 		});
 			
